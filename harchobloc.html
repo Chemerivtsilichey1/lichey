@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Харчоблок - Чемеровецький ліцей №1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        /* Основні стилі */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Основний контент */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Навігаційна панель */
+        .nav-panel {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-panel h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            border-left: 3px solid #0d47a1;
+        }
+        
+        /* Контентна частина сторінки "Харчоблок" */
+        .food-content {
+            flex: 3;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        /* Карусель фотографій */
+        .food-carousel {
+            margin: 30px 0;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .gallery-container {
+            position: relative;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+        
+        .slick-slide {
+            padding: 0 10px;
+            outline: none;
+        }
+        
+        .carousel-item {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #f5f5f5;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .carousel-item:hover img {
+            transform: scale(1.02);
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+        
+        /* Галерея для lightbox */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Інформаційні блоки */
+        .food-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .food-info p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        /* Меню */
+        .menu-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .menu-table th, .menu-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e3f2fd;
+        }
+        
+        .menu-table th {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+        
+        .menu-table tr:hover {
+            background-color: #f5f9ff;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .carousel-item {
+                height: 250px;
+            }
+            
+            .menu-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Стилі для каруселі */
+        .slick-prev, .slick-next {
+            width: 40px;
+            height: 40px;
+            z-index: 1;
+        }
+        
+        .slick-prev { left: -10px; }
+        .slick-next { right: -10px; }
+        
+        .slick-prev:before, .slick-next:before {
+            font-size: 40px;
+            color: #0d47a1;
+            opacity: 0.8;
+        }
+        
+        .slick-dots {
+            bottom: -30px;
+        }
+        
+        .slick-dots li button:before {
+            font-size: 12px;
+            color: #1e88e5;
+            opacity: 0.5;
+        }
+        
+        .slick-dots li.slick-active button:before {
+            color: #0d47a1;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imeg/Презентация1-removebg-preview.png" alt="Емблема ліцею">
+                <div class="logo-text">
+                    <h1>Чемеровецький ліцей №1</h1>
+                    <p>Освіта, наука, інновації</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основний контент -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Навігаційна панель -->
+            <aside class="nav-panel">
+                <h2>Меню навігації</h2>
+                <ul class="nav-menu" id="mainMenu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                    <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
+                    <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a>
+                    </li>
+                    <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
+                    <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
+                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
+                    <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
+                    <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Контентна частина сторінки "Харчоблок" -->
+            <main class="food-content">
+                <h2 class="section-title">Шкільний харчоблок</h2>
+                
+                <!-- Карусель фотографій -->
+                <section class="food-carousel">
+                    <h3>Фотогалерея харчоблоку</h3>
+                    <div class="gallery-container">
+                        <div id="foodGallery">
+                            <div class="carousel-item">
+                                <img src="imeg/зображення_viber_2024-05-20_09-11-46-492.jpg" alt="Сучасний харчоблок">
+                                <div class="carousel-caption">Сучасний харчоблок</div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="imeg/зображення_viber_2024-05-20_09-12-46-938.jpg" alt="Обладнання кухні">
+                                <div class="carousel-caption">Обладнання кухні</div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="imeg/зображення_viber_2024-05-20_12-17-07-906.jpg" alt="Обідня зона">
+                                <div class="carousel-caption">Обідня зона</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Додаткова галерея для lightbox -->
+                <section class="food-info">
+                    <h3>Додаткові фото харчоблоку</h3>
+                    <div class="gallery-grid" id="lightboxGallery">
+                        <a href="imeg/зображення_viber_2024-05-20_09-16-40-527.jpg" data-lightbox="gallery" data-title="Смачна їжа" class="gallery-item">
+                            <img src="imeg/зображення_viber_2024-05-20_09-16-40-527.jpg" alt="Смачна їжа">
+                        </a>
+                        <a href="imeg/Screenshot_21.jpg" data-lightbox="gallery" data-title="Сучасний харчоблок" class="gallery-item">
+                            <img src="imeg/Screenshot_21.jpg" alt="Сучасний харчоблок">
+                        </a>
+                        <a href="imeg/Screenshot_9.jpg" data-lightbox="gallery" data-title="Обідня зона" class="gallery-item">
+                            <img src="imeg/Screenshot_9.jpg" alt="Обідня зона">
+                        </a>
+                        <a href="imeg/Screenshot_14.jpg" data-lightbox="gallery" data-title="Приготування їжі" class="gallery-item">
+                            <img src="imeg/Screenshot_14.jpg" alt="Приготування їжі">
+                        </a>
+                    </div>
+                   
+                </section>
+                
+                
+                <!-- Інформація про харчування -->
+                <section class="food-info">
+                    <h3>Про харчування в ліцеї</h3>
+                    <p>Наш ліцей надає учням можливість отримувати якісне та збалансоване харчування протягом навчального дня. Харчоблок обладнаний сучасною технікою та відповідає всім санітарним нормам.</p>
+                    <p>Щодня наші кухарі готують свіжі та смачні страви з урахуванням вікових особливостей учнів. Меню розроблене з урахуванням рекомендацій дієтологів та містить необхідні для зростаючого організму вітаміни та мікроелементи.</p>
+                </section>
+                
+                <!-- Меню -->
+                <section class="menu-section">
+                    <h3>Приклад типового меню</h3>
+                    <table class="menu-table">
+                        <thead>
+                            <tr>
+                                <th>Страва</th>
+                                <th>Вага (г)</th>
+                                <th>Калорійність (ккал)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Борщ український</td>
+                                <td>250/50/30</td>
+                                <td>280</td>
+                            </tr>
+                            <tr>
+                                <td>Котлета куряча</td>
+                                <td>100</td>
+                                <td>220</td>
+                            </tr>
+                            <tr>
+                                <td>Гречка</td>
+                                <td>150</td>
+                                <td>180</td>
+                            </tr>
+                            <tr>
+                                <td>Салат зі свіжих овочів</td>
+                                <td>100</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td>Компот</td>
+                                <td>200</td>
+                                <td>90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <!-- Графік роботи -->
+                <section class="food-info">
+                    <h3>Графік роботи харчоблоку</h3>
+                    <p><strong>Понеділок - П'ятниця:</strong> 08:00 - 16:00</p>
+                    <p><strong>5-7 класи:</strong> 11:05 - 11:25 (за класами)</p>
+                    <p><strong>8-11 класи:</strong> 12:10 - 12:40 (за класами)</p>
+                    <p><strong>1-4 класи:</strong> 13:00 - 15:40 (за класами)</p>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+   <footer>
+        <div class="container footer-content">
+            <p>© <span id="currentYear"></span> Чемеровецький ліцей №1. Всі права захищені.</p>
+            <p>Україна, Хмельницька область, Кам'янець-Подільський район, смт Чемерівці, вул. Центральна, 46</p>
+            <p>E-mail: nvk1chem2020@gmail.com | Телефон: +38 (03859) 2-12-34</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="copyright">Розроблено з ❤️ для майбутніх поколінь</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Встановлюємо поточний рік у футері
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Ініціалізація каруселі
+            $('#foodGallery').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                adaptiveHeight: false
+            });
+            
+            // Ініціалізація Lightbox
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'fadeDuration': 300,
+                'imageFadeDuration': 300
+            });
+        });
+    </script>
+</body>
+</html>

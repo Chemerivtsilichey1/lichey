@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сторінка психолога - Чемеровецький ліцей №1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        /* Основні стилі */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Основний контент */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Навігаційна панель */
+        .nav-panel {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-panel h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            border-left: 3px solid #0d47a1;
+        }
+        
+        /* Контентна частина сторінки */
+        .psychologist-content {
+            flex: 3;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        /* Галерея */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery a {
+            flex: 1 1 30%;
+            max-width: 30%;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Відео */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Документи */
+        .documents {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .documents li {
+            margin-bottom: 15px;
+        }
+        
+        .documents a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #0d47a1;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .documents a:hover {
+            background-color: #f0f7ff;
+            border-radius: 5px;
+        }
+        
+        .documents i {
+            font-size: 24px;
+        }
+        
+        /* Текстовий контент */
+        .text-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .text-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .gallery a {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imeg/Презентация1-removebg-preview.png" alt="Емблема ліцею">
+                <div class="logo-text">
+                    <h1>Чемеровецький ліцей №1</h1>
+                    <p>Освіта, наука, інновації</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основний контент -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Навігаційна панель -->
+            <aside class="nav-panel">
+                <h2>Меню навігації</h2>
+                <ul class="nav-menu" id="mainMenu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                    <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
+                    <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a>
+                    </li>
+                    <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
+                    <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
+                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
+                    <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
+                    <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Контентна частина сторінки -->
+            <main class="psychologist-content">
+                <h2 class="section-title">Сторінка психолога</h2>
+                
+                <!-- Вступний текст -->
+                <div class="text-content">
+                    <p>Ласкаво просимо на сторінку шкільного психолога! Тут ви знайдете корисні матеріали, поради та рекомендації для учнів, батьків і педагогів.</p>
+                    <p>Якщо у вас виникли питання або потрібна консультація, звертайтеся за графіком роботи.</p>
+                </div>
+                
+                <!-- Галерея фото -->
+               <!--<div class="gallery">
+                    <a href="images/psychologist1.jpg" data-lightbox="psychologist" data-title="Зустріч з учнями">
+                        <img src="images/psychologist1-thumb.jpg" alt="Зустріч з учнями">
+                    </a>
+                    <a href="images/psychologist2.jpg" data-lightbox="psychologist" data-title="Тренінг для педагогів">
+                        <img src="images/psychologist2-thumb.jpg" alt="Тренінг для педагогів">
+                    </a>
+                    <a href="images/psychologist3.jpg" data-lightbox="psychologist" data-title="Робота з батьками">
+                        <img src="images/psychologist3-thumb.jpg" alt="Робота з батьками">
+                    </a>
+                </div>-->
+                
+                <!-- Відео -->
+                <div class="video-container">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=297&href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F2761417340709039%2F&show_text=false&width=560&t=0" width="560" height="297" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                </div>
+                
+                <!-- Документи -->
+                <ul class="documents">
+                    <li>
+                        <a href="docs/schedule.pdf" download>
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Графік роботи психолога (PDF, 0.5MB)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="docs/stress_management.docx" download>
+                            <i class="fas fa-file-word"></i>
+                            <span>Поради з управління стрессом (DOCX, 0.8MB)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/example" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                            <span>Додаткові матеріали на Facebook</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Додатковий текст -->
+                <div class="text-content">
+                    <h3>Послуги шкільного психолога</h3>
+                    <p>Шкільний психолог надає наступні послуги:</p>
+                    <ul>
+                        <li>Індивідуальні консультації для учнів</li>
+                        <li>Групові тренінги та заняття</li>
+                        <li>Консультації для батьків</li>
+                        <li>Методична підтримка педагогів</li>
+                        <li>Діагностика психологічного стану учнів</li>
+                    </ul>
+                </div>
+                <div class="main-container">
+                    <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0RV7JfPKhzt2JRDYBoZ1RqA1u36mXsLRV2KdapawxEb5fJpovWESLhgAVgUVeUnqyl%26id%3D100069310323485&show_text=true&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+                
+                <!-- Ще одна галерея -->
+               <!-- <div class="gallery">
+                    <a href="images/psychologist4.jpg" data-lightbox="psychologist" data-title="Профільна консультація">
+                        <img src="images/psychologist4-thumb.jpg" alt="Профільна консультація">
+                    </a>
+                    <a href="images/psychologist5.jpg" data-lightbox="psychologist" data-title="Групова робота">
+                        <img src="images/psychologist5-thumb.jpg" alt="Групова робота">
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>-->
+    
+    <!-- Футер -->
+    <footer>
+        <div class="container footer-content">
+            <p>© <span id="currentYear"></span> Чемеровецький ліцей №1. Всі права захищені.</p>
+            <p>Україна, Хмельницька область, Кам'янець-Подільський район, смт Чемерівці, вул. Центральна, 46</p>
+            <p>E-mail: nvk1chem2020@gmail.com | Телефон: +38 (03859) 2-12-34</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="copyright">Розроблено з ❤️ для майбутніх поколінь</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        // Встановлення поточного року у футері
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Ініціалізація Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': 'Зображення %1 з %2'
+        });
+    </script>
+</body>
+</html>

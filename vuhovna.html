@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виховна робота - Чемеровецький ліцей №1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        /* Основні стилі - такі самі як на сторінці "Прозорість та відкритість" */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Основний контент */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Навігаційна панель */
+        .nav-panel {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-panel h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            border-left: 3px solid #0d47a1;
+        }
+        
+        /* Контентна частина сторінки */
+        .educational-content {
+            flex: 3;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        /* Інформаційні блоки */
+        .info-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 20px;
+        }
+        
+        .info-section h3 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+        }
+        
+        .info-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        /* Галерея */
+        .gallery-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-row a {
+            flex: 1 1 30%;
+            max-width: 30%;
+        }
+        
+        .gallery-row img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-row a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Документи */
+        .documents-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .documents-list li {
+            margin-bottom: 15px;
+        }
+        
+        .documents-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #0d47a1;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .documents-list a:hover {
+            background-color: #f0f7ff;
+            border-radius: 5px;
+        }
+        
+        .documents-list i {
+            font-size: 24px;
+        }
+        
+        /* Відео */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Бургер меню для навігації по сторінці */
+        .burger-menu {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .burger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-btn:hover {
+            background-color: #1e88e5;
+        }
+        
+        .burger-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .burger-icon span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-btn.active .burger-icon span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .burger-btn.active .burger-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-btn.active .burger-icon span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        .burger-content {
+            display: none;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .burger-content.active {
+            display: block;
+        }
+        
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .nav-links a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .nav-links a:hover {
+            background-color: #0d47a1;
+            color: white;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                margin-top: 15px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .gallery-row a {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            .nav-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imeg/Презентация1-removebg-preview.png" alt="Емблема ліцею">
+                <div class="logo-text">
+                    <h1>Чемеровецький ліцей №1</h1>
+                    <p>Освіта, наука, інновації</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основний контент -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Навігаційна панель -->
+            <aside class="nav-panel">
+                <h2>Меню навігації</h2>
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                    <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
+                    <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a></li>
+                    <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
+                    <li><a href="vuhovna.html" class="active"><i class="fas fa-heart"></i> Виховна робота</a></li>
+                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
+                    <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
+                    <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Контентна частина сторінки -->
+            <main class="educational-content">
+                <h2 class="section-title">Виховна робота</h2>
+                
+                <!-- Бургер меню для навігації по сторінці -->
+                <div class="burger-menu">
+                    <button class="burger-btn" id="burgerBtn">
+                        <span>Швидка навігація</span>
+                        <div class="burger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                    <div class="burger-content" id="burgerContent">
+                        <div class="nav-links">
+                            <a href="#parents">Робота з батьками</a>
+                            <a href="#bullying">Булінг. Шляхи подолання</a>
+                            <a href="#teachers">МО класних керівників</a>
+                            <a href="#students">Учнівське самоврядування</a>
+                            <a href="#homa">ХОМА</a>
+                            <a href="#events">Виховні заходи</a>
+                            <a href="#safety">Безпека життєдіяльності</a>
+                            <a href="#patriotic">Національно-патріотичне виховання</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Робота з батьками -->
+                <section class="info-section" id="parents">
+                    <h3>Робота з батьками</h3>
+                    <p>Система роботи з батьками спрямована на створення єдиного освітнього простору "сім'я - школа", залучення батьків до участі в освітньому процесі та виховній роботі.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/Screenshot_12.jpg" data-lightbox="parents" data-title="Подолання освітніх втрат">
+                            <img src="imeg/Screenshot_12.jpg" alt="Зустріч з батьками">
+                        </a>
+                    </div>
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://docs.google.com/document/d/1RsZVk2pGWkR_7JpLBFf_MRyWfqHR9Zn4/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>ПОЛОЖЕННЯ про запобігання і протидію насильству та жорстокому поводженню з дітьми вЧемеровецькому ліцеї №1 з урахуванням Типової програми унеможливлення насильства та жорстокого поводження з дітьми</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.google.com/document/d/1gBIHqFBEbbpr1B36BBjWtuCSg-v18Yug/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>ПОЛОЖЕННЯ про академічну доброчесність педагогічних працівників, учнів та їх батьків чи осіб, які їх заміняють в Чемеровецькому ліцеї №1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.google.com/document/d/1dt7ZYiY118nN05CvVQmak-meLFmhFOiM/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Загальні правила поведінки здобувачів освіти в освітньому просторі</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Булінг. Шляхи подолання -->
+                <section class="info-section" id="bullying">
+                    <h3>Булінг. Шляхи подолання</h3>
+                    <p>Профілактика та протидія булінгу - важливий напрямок виховної роботи в ліцеї. Ми працюємо над створенням безпечного освітнього середовища для всіх учнів.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/001b.jpg" data-lightbox="bullying" data-title="Стоп Булінг">
+                            <img src="imeg/001b.jpg" alt="Стоп Булінг">
+                        </a>
+                    </div>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://docs.google.com/document/d/1sEy0MM4JTzNoKVBlBCHzASTb_PbHqV5j/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>ПЛАН спільних заходів щодо попередження правопорушень та злочинів серед неповнолітніх здобувачів освіти на 2024-2025 н.р.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.google.com/document/d/18QO7trgUXkPz8pCdHxWVKftIKNzC263o/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>ПЛАН ЗАХОДІВ ЩОДО ЗАПОБІГАННЯ ТА ПРОТИДІЇ БУЛІНГУ (ЦЬКУВАВАННЯ) НА 2024-2025 НАВЧАЛЬНИЙ РІК</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.google.com/document/d/1vgV9MrfBnoL4vhWOZsCQhEeLOEdEAMl6/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Повідомлення про скоєння булінгу</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/приклад" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                                <span>Додаткові матеріали на Facebook</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- МО класних керівників -->
+                <section class="info-section" id="teachers">
+                    <h3>Методичне об'єднання класних керівників</h3>
+                    <p>МО класних керівників координує виховну роботу в ліцеї, забезпечує методичний супровід, обмін досвідом між педагогами.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/teachers1.jpg" data-lightbox="teachers" data-title="Засідання МО класних керівників">
+                            <img src="imeg/teachers1.jpg" alt="Засідання МО класних керівників">
+                        </a>
+                    </div>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="documents/class_teachers_plan.pdf" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>План роботи МО класних керівників (PDF, 1.2MB)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Учнівське самоврядування -->
+                <section class="info-section" id="students">
+                    <h3>Учнівське самоврядування</h3>
+                    <p>Учнівське самоврядування - це форма організації життя колективу, яка забезпечує розвиток самоорганізації, ініціативи, самостійності учнів.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/Screenshot_13.jpg" data-lightbox="students" data-title="Учнівське самоврядування">
+                            <img src="imeg/Screenshot_13.jpg" alt="Учнівське самоврядування">
+                        </a>
+                        <a href="imeg/Screenshot_7.jpg" data-lightbox="students" data-title="Президент учнівського парламенту">
+                            <img src="imeg/Screenshot_7.jpg" alt="Президент учнівського парламенту">
+                        </a>
+                    </div>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1ZmU1mG5mMOmQiU1SH0lqRGhZGN7fNxOT/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Чемеровецький ліцей No 1 обрав нового Президента!</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1rMZk4b-EAZKsEt0qXKobkZLWXdn0LTf0/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>План роботи учнівського самоврядування «СОВА» на 2024/2025 н. р.</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- ХОМА -->
+                <section class="info-section" id="homa">
+                    <h3>ХОМА</h3>
+                    <p></p>
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/zEkvpG7p_Lw?si=cov3W1oG1af2HdVH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </section>
+                
+                <!-- Виховні заходи -->
+                <section class="info-section" id="events">
+                    <h3>Виховні заходи</h3>
+                    <p>Система виховних заходів у ліцеї спрямована на всебічний розвиток особистості учня, формування громадянської позиції, морально-етичних якостей.</p>
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F4028057397408257%2F&show_text=false&width=380&t=0" width="380" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F717998353946000%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                    
+                    <div class="video-container">
+                        <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="documents/educational_events_plan.pdf" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>План виховних заходів на 2023-2024 н.р. (PDF, 2.1MB)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Безпека життєдіяльності -->
+                <section class="info-section" id="safety">
+                    <h3>Безпека життєдіяльності</h3>
+                    <p>Формування культури безпеки життєдіяльності - важливий напрямок виховної роботи, що включає профілактику травматизму, пожежної безпеки, дорожнього руху тощо.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/492274271_966907188962950_6982681292772644258_n.jpg" data-lightbox="safety" data-title="День цивільного захисту">
+                            <img src="imeg/492274271_966907188962950_6982681292772644258_n.jpg" alt="День цивільного захисту">
+                        </a>
+                         <a href="imeg/493274438_966906185629717_1622626869430482742_n.jpg" data-lightbox="safety" data-title="День цивільного захисту">
+                            <img src="imeg/493274438_966906185629717_1622626869430482742_n.jpg" alt="День цивільного захисту">
+                        </a>
+                        <a href="imeg/491281732_966907152296287_697782795182629610_n.jpg" data-lightbox="safety" data-title="День цивільного захисту">
+                            <img src="imeg/491281732_966907152296287_697782795182629610_n.jpg" alt="День цивільного захисту">
+                        </a>
+                    </div>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://docs.google.com/document/d/17OYKHKsI2ZSf2VaxS3iOdRQCPnb4wiPl/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Топ-10 порад із кібербезпеки для дітей</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Національно-патріотичне виховання -->
+                <section class="info-section" id="patriotic">
+                    <h3>Національно-патріотичне виховання</h3>
+                    <p>Система заходів спрямована на формування національної свідомості, патріотизму, поваги до історичної спадщини українського народу.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/480974950_926262823027387_7040459797102217657_n.jpg" data-lightbox="patriotic" data-title="Відкриття зали пам'яті">
+                            <img src="imeg/480974950_926262823027387_7040459797102217657_n.jpg" alt="Відкриття зали пам'яті">
+                        </a>
+                        <a href="imeg/481072430_926262983027371_330357764306172401_n.jpg" data-lightbox="patriotic" data-title="Відкриття зали пам'яті">
+                            <img src="imeg/481072430_926262983027371_330357764306172401_n.jpg" alt="Відкриття зали пам'яті">
+                        </a>
+                        <a href="imeg/481073470_926262866360716_5101125367375817413_n.jpg" data-lightbox="patriotic" data-title="Відкриття зали пам'яті">
+                            <img src="imeg/481073470_926262866360716_5101125367375817413_n.jpg" alt="Відкриття зали пам'яті">
+                        </a>
+                    </div>
+                    <p>Пам’ять про вас житиме вічно…</p>
+                    <div class="video-container">
+                        
+                        <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F926217715995095%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                    </div>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="documents/patriotic_program.pdf" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Програма національно-патріотичного виховання (PDF, 2.3MB)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/приклад" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                                <span>Патріотичні заходи на Facebook</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="container footer-content">
+            <p>© <span id="currentYear"></span> Чемеровецький ліцей №1. Всі права захищені.</p>
+            <p>Україна, Хмельницька область, Кам'янець-Подільський район, смт Чемерівці, вул. Центральна, 46</p>
+            <p>E-mail: nvk1chem2020@gmail.com | Телефон: +38 (03859) 2-12-34</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="copyright">Розроблено з ❤️ для майбутніх поколінь</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        // Встановлення поточного року у футері
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Бургер меню
+        document.getElementById('burgerBtn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('burgerContent').classList.toggle('active');
+        });
+        
+        // Плавна прокрутка до якорів
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закриваємо бургер меню після кліку (для мобільних пристроїв)
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('burgerBtn').classList.remove('active');
+                        document.getElementById('burgerContent').classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Ініціалізація Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': 'Зображення %1 з %2'
+        });
+    </script>
+</body>
+</html>

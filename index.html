@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чемеровецький ліцей №1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Глобальні стилі */
+        :root {
+            --primary-color: #0056b3;
+            --primary-dark: #003d7a;
+            --secondary-color: #ff8c00;
+            --secondary-dark: #e67e00;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-color: #212529;
+            --light-gray: #e9ecef;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 70px;
+            object-fit: contain;
+            margin-right: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-text h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 22px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Блок з фото школи та висловом */
+        .hero {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(255, 140, 0, 0.05) 100%);
+            z-index: 0;
+        }
+
+        .school-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--light-gray);
+            margin-right: 40px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s;
+        }
+
+        .school-photo:hover {
+            transform: scale(1.03) rotate(2deg);
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 20px;
+            color: var(--primary-dark);
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+            z-index: 1;
+            line-height: 1.8;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 120px;
+            color: rgba(0, 86, 179, 0.05);
+            position: absolute;
+            left: -40px;
+            top: -50px;
+            z-index: -1;
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+
+        .quote-author {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+            font-style: normal;
+            color: var(--secondary-dark);
+            font-size: 18px;
+        }
+
+        /* Основний контент */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Навігаційна панель */
+        .nav-panel {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .nav-panel h2 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            font-size: 22px;
+            position: relative;
+        }
+
+        .nav-panel h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .nav-menu li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu li:hover::before {
+            width: 100%;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 12px 15px;
+            color: var(--text-color);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(0, 86, 179, 0.05);
+            color: var(--primary-dark);
+            padding-left: 20px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        /* Блок новин */
+        .news-section {
+            flex: 3;
+        }
+
+        .news-section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            font-size: 22px;
+            position: relative;
+        }
+
+        .news-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-image-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .news-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            padding: 10px;
+            transition: transform 0.5s;
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .news-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .news-card:hover .news-title {
+            color: var(--secondary-dark);
+        }
+
+        .news-date {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .news-excerpt {
+            font-size: 15px;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-dark);
+        }
+
+        .facebook-link {
+            display: inline-block;
+            color: #1877f2;
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        .facebook-link:hover {
+            color: #0d5bca;
+        }
+
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content p {
+            margin-bottom: 15px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .footer-content p:first-child {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 22px;
+            transition: all 0.3s;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .nav-panel {
+                max-width: 100%;
+                position: static;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-right: 0;
+                margin-bottom: 20px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .header-right {
+                flex-direction: column;
+                margin-top: 20px;
+                width: 100%;
+                gap: 15px;
+            }
+
+            .social-icons {
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+
+            .school-photo {
+                margin-right: 0;
+                margin-bottom: 30px;
+                width: 220px;
+                height: 220px;
+            }
+
+            .quote::before {
+                left: 50%;
+                transform: translateX(-50%);
+                top: -60px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+
+            .hero {
+                padding: 20px;
+            }
+
+            .school-photo {
+                width: 180px;
+                height: 180px;
+            }
+
+            .quote {
+                font-size: 18px;
+            }
+
+            .quote-author {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imeg/Презентация1-removebg-preview.png" alt="Емблема ліцею">
+                <div class="logo-text">
+                    <h1>Чемеровецький ліцей №1</h1>
+                    <p>Освіта, наука, інновації</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i
+                            class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основний контент -->
+    <div class="container">
+        <!-- Блок з фото школи та висловом -->
+        <section class="hero">
+            <img src="imeg/Screenshot_1.jpg" alt="Фото школи" class="school-photo">
+            <div class="quote">
+                "Освіта - це найпотужніша зброя, яку можна використовувати, щоб змінити світ."
+                <span class="quote-author">- Нельсон Мандела</span>
+            </div>
+        </section>
+
+        <!-- Основний контент з навігацією та новинами -->
+        <div class="main-content">
+            <!-- Навігаційна панель -->
+            <aside class="nav-panel">
+                <h2>Меню навігації</h2>
+                <ul class="nav-menu" id="mainMenu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                    <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
+                    <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a>
+                    </li>
+                    <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
+                    <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
+                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
+                    <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
+                    <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
+                </ul>
+            </aside>
+
+            <!-- Блок новин -->
+            <section class="news-section">
+                <h2>Останні новини</h2>
+                <div class="news-grid" id="newsContainer">
+                    <!-- Новіни будуть додані через JavaScript -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container footer-content">
+            <p>© <span id="currentYear"></span> Чемеровецький ліцей №1. Всі права захищені.</p>
+            <p>Україна, Хмельницька область, Кам'янець-Подільський район, смт Чемерівці, вул. Центральна, 46</p>
+            <p>E-mail: nvk1chem2020@gmail.com | Телефон: +38 (03859) 2-12-34</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="copyright">Розроблено з ❤️ для майбутніх поколінь</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Поточний рік у футері
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Дані новин
+            const newsData = [
+                {
+                    title: "Випуск 2025",
+                    image: "imeg/зображення_viber_2025-07-03_11-59-02-597.jpg",
+                    date: "7 червня 2025",
+                    text: "Світ чекає",
+                    facebook: "https://www.facebook.com/share/p/1Gy42G86tT/"
+                },
+                {
+                    title: "200 бальники",
+                    image: "imeg/зображення_viber_2025-07-03_12-30-56-995.jpg",
+                    date: "20 червня 2025",
+                    text: "Вітаємо наших випускників Максима Шатковського та Катерину Грехову з фантастичним досягненням — 200 балів з української мови на НМТ! Висловлюємо подяку Максиму та Катерині та вчителю Олені Чухрій. Бо за кожними 200 балами — сотні спільних кроків. Бажаємо подальших успіхів, впевненості у власних силах і нових перемог.❤️",
+                    facebook: "https://www.facebook.com/share/p/19SjcdPB7C/"
+                },
+                {
+                    title: "Випускний вальс",
+                    image: "imeg/Screenshot_2.jpg",
+                    date: "7 червня 2025",
+                    text: "Вальс 11 Б",
+                    facebook: "https://www.facebook.com/share/v/1YJ3yCxjwu/"
+                },
+                {
+                    title: "Наша гордість. Юні Джурівці'",
+                    image: "imeg/5a27b4f23365a834159541.png",
+                    date: "22 травня 2025",
+                    text: "21 травня на базі нашого ліцею відбувся перший етап дитячо-юнацької,військово-патріотичної гри «Сокіл»(«Джура»).Наша команда «Сіроманці» 🐺продемонстрували високий рівень підготовки,велику силу духу,відданість своїй справі!Пишаємось вами,наші юні патріоти!❤️❤️❤️",
+                    facebook: "https://www.facebook.com/share/v/1G5tVBx5gq/"
+                }
+            ];
+
+            // Функція для відображення новин
+            function renderNews() {
+                const newsContainer = document.getElementById('newsContainer');
+                newsContainer.innerHTML = '';
+
+                newsData.forEach(news => {
+                    const newsCard = document.createElement('article');
+                    newsCard.className = 'news-card';
+                    
+                    newsCard.innerHTML = `
+                        <div class="news-image-container">
+                            <img src="${news.image}" alt="${news.title}" class="news-image">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">${news.title}</h3>
+                            <p class="news-date">${news.date}</p>
+                            <p class="news-excerpt">${news.text}</p>
+                            ${news.facebook ? `<a href="${news.facebook}" class="facebook-link" target="_blank">Переглянути у Facebook <i class="fab fa-facebook"></i></a>` : ''}
+                            
+                        </div>
+                    `;
+                    
+                    newsContainer.appendChild(newsCard);
+                });
+            }
+
+            // Ініціалізація сторінки
+            renderNews();
+        });
+    </script>
+</body>
+
+</html>

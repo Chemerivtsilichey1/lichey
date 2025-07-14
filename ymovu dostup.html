@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умови доступності для навчання осіб з особливими освітніми потребами - Чемеровецький ліцей №1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        /* Основні стилі */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Основний контент */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Навігаційна панель */
+        .nav-panel {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-panel h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            border-left: 3px solid #0d47a1;
+        }
+        
+        /* Контентна частина сторінки */
+        .accessibility-content {
+            flex: 3;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        /* Інформаційні блоки */
+        .info-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-section h3 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+        }
+        
+        .info-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        /* Галерея */
+        .gallery-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-row a {
+            flex: 1 1 30%;
+            max-width: 30%;
+        }
+        
+        .gallery-row img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-row a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Документи */
+        .documents-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .documents-list li {
+            margin-bottom: 15px;
+        }
+        
+        .documents-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #0d47a1;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .documents-list a:hover {
+            background-color: #f0f7ff;
+            border-radius: 5px;
+        }
+        
+        .documents-list i {
+            font-size: 24px;
+        }
+        
+        /* Відео контейнери */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                margin-top: 15px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .gallery-row a {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imeg/Презентация1-removebg-preview.png" alt="Емблема ліцею">
+                <div class="logo-text">
+                    <h1>Чемеровецький ліцей №1</h1>
+                    <p>Освіта, наука, інновації</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основний контент -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Навігаційна панель -->
+            <aside class="nav-panel">
+                <h2>Меню навігації</h2>
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                    <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
+                    <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
+                    <li><a href="ymovu dostup.html" class="active"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a></li>
+                    <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
+                    <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
+                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
+                    <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
+                    <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Контентна частина сторінки -->
+            <main class="accessibility-content">
+                <h2 class="section-title">Умови доступності для навчання осіб з особливими освітніми потребами</h2>
+                
+                <!-- Основна інформація -->
+                <section class="info-section">
+                    <h3>Про доступність</h3>
+                    <p>Чемеровецький ліцей №1 створює інклюзивне середовище для навчання осіб з особливими освітніми потребами. Ми забезпечуємо рівні можливості для всіх учнів незалежно від їхніх фізичних чи психологічних особливостей.</p>
+                    <p>Наші спеціалісти постійно працюють над вдосконаленням умов для комфортного навчання та соціалізації дітей з особливими потребами.</p>
+                </section>
+                
+                <!-- Інфраструктура -->
+                <section class="info-section">
+                    <h3>Інфраструктура</h3>
+                    <p>Ліцей обладнаний спеціальними засобами для забезпечення доступності:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Пандуси та поручні для маломобільних осіб</li>
+                        <li>Спеціальні санвузли</li>
+                        
+                        <li>Зони релаксації та сенсорного розвантаження</li>
+                    </ul>
+                    <p>Ми постійно вдосконалюємо нашу інфраструктуру, щоб забезпечити максимальний комфорт для всіх учнів.</p>
+                </section>
+                
+                <!-- Документи -->
+                <section class="info-section">
+                    <h3>Документи</h3>
+                    <p>Нормативні документи та матеріали з інклюзивної освіти:</p>
+                    <ul class="documents-list">
+                        <li>
+                            <a href="documents/Про схвалення Національної стратегії із створення безбар'є… - Розпорядження № 366-р від 14.04.2021 - d505256-20210414 (1).docx" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Національна стратегія зі створення безбар'єрного простору</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="documents/заходи.docx" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Заходи щодо впровадження інклюзивної освіти</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="documents/dorozhnya-karta.pdf" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Дорожня карта інклюзії в нашому ліцеї</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="documents/adaptovana-programa.pdf" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Адаптована освітня програма</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Відео матеріали -->
+                <section class="info-section">
+                    <h3>Відеоматеріали</h3>
+                    
+                    <!-- YouTube відео -->
+                    <h4>Інклюзивна освіта в Україні</h4>
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Nb-w1TDIy44?si=avFTP-LxW0P6dKUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    
+                    <!-- Facebook відео 
+                    <h4>Наш досвід інклюзії</h4>
+                    <div class="video-container">
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fприклад_сторінки%2Fvideos%2Fприклад_ID_відео%2F&show_text=0&width=560" 
+                                frameborder="0" 
+                                allowfullscreen>
+                        </iframe>
+                    </div> -->
+                </section> 
+                
+                <!-- Галерея -->
+                <section class="info-section">
+                    <h3>Фотогалерея</h3>
+                    <div class="gallery-row">
+                        <a href="imeg/Screenshot_7jpg.jpg" data-lightbox="gallery" data-title="Пандус при вході">
+                            <img src="imeg/Screenshot_7jpg.jpg" alt="Пандус при вході">
+                        </a>
+                        <a href="imeg/Screenshot_8.jpg" data-lightbox="gallery" data-title="Пандус при вході">
+                            <img src="imeg/Screenshot_8.jpg" alt="Пандус при вході">
+                        </a>
+                        <a href="imeg/Screenshot_5.jpg" data-lightbox="gallery" data-title="Ресурсна кімната">
+                            <img src="imeg/Screenshot_5.jpg" alt="Ресурсна кімната">
+                        </a>
+                        <a href="imeg/Screenshot_6.jpg" data-lightbox="gallery" data-title="Ресурсна кімната">
+                            <img src="imeg/Screenshot_6.jpg" alt="Ресурсна кімната">
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Контакти -->
+                <section class="info-section">
+                    <h3>Контакти</h3>
+                    <p>Якщо у вас є запитання щодо умов доступності, ви можете звернутися до наших спеціалістів:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Соціальний педагог:</strong> Пн-Пт, 9:00-16:00</li>
+                        <li><strong>Психолог:</strong> Пн-Пт, 9:00-16:00</li>
+                        <!--<li><strong>Телефон гарячої лінії:</strong> +38 (XXX) XXX-XX-XX</li>
+                        <li><strong>Email:</strong> inclusion@lyceum1.edu.ua</li>-->
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="container footer-content">
+            <p>© <span id="currentYear"></span> Чемеровецький ліцей №1. Всі права захищені.</p>
+            <p>Україна, Хмельницька область, Кам'янець-Подільський район, смт Чемерівці, вул. Центральна, 46</p>
+            <p>E-mail: nvk1chem2020@gmail.com | Телефон: +38 (03859) 2-12-34</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="copyright">Розроблено з ❤️ для майбутніх поколінь</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Встановлюємо поточний рік у футері
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Ініціалізація Lightbox
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'fadeDuration': 300,
+                'imageFadeDuration': 300
+            });
+        });
+    </script>
+</body>
+</html>

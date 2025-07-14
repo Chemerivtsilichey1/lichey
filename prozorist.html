@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прозорість та відкритість - Чемеровецький ліцей №1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        /* Основні стилі */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Основний контент */
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        /* Навігаційна панель */
+        .nav-panel {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-panel h2 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-weight: 600;
+            border-left: 3px solid #0d47a1;
+        }
+        
+        /* Контентна частина сторінки */
+        .transparency-content {
+            flex: 3;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        /* Інформаційні блоки */
+        .info-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 20px;
+        }
+        
+        .info-section h3 {
+            color: #0d47a1;
+            margin-bottom: 20px;
+        }
+        
+        .info-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        /* Галерея */
+        .gallery-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-row a {
+            flex: 1 1 30%;
+            max-width: 30%;
+        }
+        
+        .gallery-row img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-row a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Документи */
+        .documents-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .documents-list li {
+            margin-bottom: 15px;
+        }
+        
+        .documents-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #0d47a1;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .documents-list a:hover {
+            background-color: #f0f7ff;
+            border-radius: 5px;
+        }
+        
+        .documents-list i {
+            font-size: 24px;
+        }
+        
+        /* Бургер меню для навігації по сторінці */
+        .burger-menu {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .burger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-btn:hover {
+            background-color: #1e88e5;
+        }
+        
+        .burger-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .burger-icon span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .burger-btn.active .burger-icon span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .burger-btn.active .burger-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-btn.active .burger-icon span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
+        .burger-content {
+            display: none;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .burger-content.active {
+            display: block;
+        }
+        
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .nav-links a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .nav-links a:hover {
+            background-color: #0d47a1;
+            color: white;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                margin-top: 15px;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .gallery-row a {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            .nav-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайту -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="imeg/Презентация1-removebg-preview.png" alt="Емблема ліцею">
+                <div class="logo-text">
+                    <h1>Чемеровецький ліцей №1</h1>
+                    <p>Освіта, наука, інновації</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Основний контент -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Навігаційна панель -->
+            <aside class="nav-panel">
+                <h2>Меню навігації</h2>
+                <ul class="nav-menu">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
+                    <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
+                    <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a></li>
+                    <li><a href="prozorist.html" class="active"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
+                    <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
+                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
+                    <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
+                    <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Контентна частина сторінки -->
+            <main class="transparency-content">
+                <h2 class="section-title">Прозорість та відкритість</h2>
+                
+                <!-- Бургер меню для навігації по сторінці -->
+                <div class="burger-menu">
+                    <button class="burger-btn" id="burgerBtn">
+                        <span>Швидка навігація</span>
+                        <div class="burger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                    <div class="burger-content" id="burgerContent">
+                        <div class="nav-links">
+                            <a href="#statut">Статут</a>
+                            <a href="#license">Ліцензія</a>
+                            <a href="#structure">Структура</a>
+                            <a href="#programs">Освітні програми</a>
+                            <a href="#territory">Територія</a>
+                            <a href="#language">Мова</a>
+                            <a href="#report">Річний звіт</a>
+                            <a href="#rules">Правила прийому</a>
+                            <a href="#budget">Кошторис</a>
+                            <a href="#finance">Фінансова звітність</a>
+                            <a href="#donations">Благодійна допомога</a>
+                            <a href="#vacancies">Вакансії</a>
+                            <a href="#textbooks">Замовлення підручників</a>
+                            <a href="#quality">Якість освіти</a>
+                            <a href="#strategy">Стратегія</a>
+                            <a href="#procurement">Публічні закупівлі</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Статут закладу освіти -->
+                <section class="info-section" id="statut">
+                    <h3>Статут закладу освіти</h3>
+                    <p>Статут Чемеровецького ліцею №1 визначає основні принципи діяльності, права та обов'язки учасників освітнього процесу, порядок управління закладом освіти.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/10sUmoE9Zw1aZgThc_ZBi5_YnqousMbH_/view?usp=sharing" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Статут Чемеровецького ліцею №1</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Ліцензований обсяг -->
+                <section class="info-section" id="license-volume">
+                    <h3>Ліцензований обсяг</h3>
+                    <p>Ліцензований обсяг надання освітніх послуг Чемеровецьким ліцеєм №1:</p>
+                    <div class="gallery-row">
+                        <a href="imeg/Screenshot_10.jpg" data-lightbox="license" data-title="Ліцензія на освітню діяльність">
+                            <img src="imeg/Screenshot_10.jpg" alt="Ліцензія на освітню діяльність">
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Ліцензія -->
+                <section class="info-section" id="license">
+                    <h3>Ліцензія</h3>
+                    <p>Чемеровецький ліцей №1 має ліцензію на освітню діяльність, видану Міністерством освіти і науки України.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1UJQ0UKykMQwAnIGWS839eonYQ5qrl6Nt/view?usp=sharing" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Ліцензія на освітню діяльність</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Структура та органи управління закладу освіти -->
+                <section class="info-section" id="structure">
+                    <h3>Структура та органи управління закладу освіти</h3>
+                    <p>Управління ліцеєм здійснюється відповідно до законодавства України та Статуту закладу освіти.</p>
+                    
+                    <div class="gallery-row">
+                        <a href="imeg/Screenshot_11.jpg" data-lightbox="structure" data-title="Організаційна структура ліцею">
+                            <img src="imeg/Screenshot_11.jpg" alt="Організаційна структура ліцею">
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Освітні програми -->
+                <section class="info-section" id="programs">
+                    <h3>Освітні програми</h3>
+                    <p>Чемеровецький ліцей №1 реалізує такі освітні програми:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Програма початкової освіти (1-4 класи)</li>
+                        <li>Програма базової середньої освіти (5-9 класи)</li>
+                        <li>Програма профільної середньої освіти (10-11 класи)</li>
+                        <li>Програми позашкільної освіти</li>
+                    </ul>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://docs.google.com/document/d/1B-eMHntRmo3A-7hqdFHGZk73shGmgSeX/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Освітня програма Чемеровецького ліцею №1 на 2024-2025 навчальний рік</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Територія обслуговування -->
+                <section class="info-section" id="territory">
+                    <h3>Територія обслуговування</h3>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1yCUdoJ8OnFRAquk6wPw3IGVDOlKl-iMq/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Розпорядження селищного голови</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Мова освітнього процесу -->
+                <section class="info-section" id="language">
+                    <h3>Мова освітнього процесу</h3>
+                    <p>Освітній процес у Чемеровецькому ліцеї №1 здійснюється українською мовою.</p>
+                </section>
+                
+                <!-- Річний звіт про діяльність закладу освіти -->
+                <section class="info-section" id="report">
+                    <h3>Річний звіт про діяльність закладу освіти</h3>
+                    <p>Щорічний звіт про освітню, наукову, методичну, виховну та адміністративну діяльність ліцею.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://docs.google.com/document/d/1h9I2Dq80U0MXp2FHCqOrah6CZxIqGiWD/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>Річний звіт за 2024-2025 рік</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Правила прийому до закладу освіти -->
+                <section class="info-section" id="rules">
+                    <h3>Правила прийому до закладу освіти</h3>
+                    <p>Шановні батьки!</p>
+                    <p>Правила прийому до закладу освіти</p>
+                    <p>Зарахування учнів до 1-го класу здійснюється без проведення конкурсу і, як правило, відповідно до території обслуговування.
+Переведення учнів до наступного класу здійснюється у порядку, встановленому МОН України.
+У разі переходу учня до іншого закладу освіти для здобуття загальної середньої освіти батьки або особи, які їх замінюють, подають до школи заяву із зазначенням причини переходу та довідку про продовження навчання в іншому закладі.</p>
+                   <p>Перелік необхідних документів для зарахування до 1-11 класів:</p> 
+                    <ul>
+                        <li>Заява від батьків.</li>
+                        <li>Медичні документи</li>
+                        <li>Копія свідоцтва про народження дитини.</li>
+                        <li>Особова справа.</li>
+                        <li>Витяг з реєстру територіальної громади (довідка про місце прописки)</li>
+                    </ul>
+                </section>
+                
+                <!-- Кошторис -->
+                <section class="info-section" id="budget">
+                    <h3>Кошторис</h3>
+                    <p>Щорічний кошторис доходів та видатків Чемеровецького ліцею №1.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1mw_8o-5Yavw0NElfv3Nc04Hqs1G9E28Z/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Кошторис 2025 рік</span>
+                            </a>
+                        </li>
+                        <li>
+                           <a href="https://drive.google.com/file/d/1ZGWZ-6ZUzGtXhCAT_BZySQXcxgtmG9ev/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Кошторис 2024 рік</span>
+                            </a> 
+                        </li>
+                        <li>
+                           <a href="https://drive.google.com/file/d/11rd7TOj0vBL2A92oINCDTPsddvMfwN43/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Кошторис 2023 рік</span>
+                            </a> 
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Фінансова звітність -->
+                <section class="info-section" id="finance">
+                    <h3>Фінансова звітність</h3>
+                    <p>Щоквартальна та річна фінансова звітність закладу освіти.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1WQqUyyHkMzC3LYRgNynBHhNa82nFiARp/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Звіт про заборгованість за бюджетними коштами за 1 квартал 2025 року</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1vg4v49rLtDzV65RvQYoQLJpnHqjq4XHt/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Звіт про надходження і використання коштів за 1 квартал 2025 року.pdf</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1i2Wog25f5L5ZK4qFhZYMAcNG5zx44nwG/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Звіт про фінансові результати 30 1 квартал 2025 року</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1cJB6NtTE_s6gvFhOPVnmnCZwJxTCpryi/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Баланс на 01 квітня 2025 року</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1IF3NKoYy_vImuz4DEaMm-RGXqy33K-cS/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Бюджетна звітність березень 2025 рік</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1tO5GN5m4Nk01dAVNfURdce12P3f152XQ/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Бюджетна звітність за лютий 2025 рік</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Звіт про використання та надходження всіх отриманих коштів -->
+                <section class="info-section" id="funds">
+                    <h3>Звіт про використання та надходження всіх отриманих коштів</h3>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1T8jrOPyL5l67yddeb6f5xH4UYK2SfnUY/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Використання коштів за 1 квартал 2025 року</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1G-awvY23GAuOBX8bptw-0T0PGHj73B4G/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Наказ про план заходів по енергоефективності.pdf</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Інформація про благодійну допомогу -->
+                <section class="info-section" id="donations">
+                    <h3>Інформація про благодійну допомогу</h3>
+                    <p>Шановні батьки!</p>
+                    <p>Бажаючі надати матеріальну допомогу Чемеровецькому ліцею №1 можуть скористатися спец рахунком закладу:</p>
+                    <p>Банківські реквізити:</p>
+                    <p>ЧЕМЕРОВЕЦЬКИЙ ЛІЦЕЙ №1</p>
+                    <p>ЧЕМЕРОВЕЦЬКОЇ СЕЛИЩНОЇ РАДИ</p>
+                    <p>р/р UA198201720314211007301048290</p>
+                    <p>в ГУДКСУ в м. Київ</p>
+                    <p>МФО 820172</p>
+                    <p>код 22988437</p>
+
+                    <p>Призначення платежу – добровільні пожертвування батькiв учнiв на утримання i розвиток лiцею (ПІБ учня, клас)</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1_afDOVST673UhcbbTyrrDQjGJGvHk8On/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Отримані благодійні внески. гранти та дарунки 2024 рік</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Інформація про перелік товарів, робіт і послуг, отриманих як благодійна допомогу -->
+                <section class="info-section" id="donations">
+                    <h3>Перелік товарів, робіт і послуг, отриманих як благодійна допомога</h3>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1IDlAmGHe4sl6XEWzfPj-zbEp92X7jcSz/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Інформація про перелік товарів, робіт і послуг отриманих, як благодійна допомога (2025 рік)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Вакансії -->
+                <section class="info-section" id="vacancies">
+                    <h3>Вакансії</h3>
+                    <p>Актуальні вакансії у Чемеровецькому ліцеї №1 наразі відсутні</p>
+                </section>
+                
+                <!-- Замовлення підручників -->
+                <section class="info-section" id="textbooks">
+                    <h3>Замовлення підручників</h3>
+                    <p>Інформація про замовлення та забезпечення учнів підручниками та навчальними посібниками.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1F9NxQWRu_9niDHYr9VF_Z_kyi-2NLqZd/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Замовлення підручників</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Внутрішня система забезпечення якості освіти -->
+                <section class="info-section" id="quality">
+                    <h3>Внутрішня система забезпечення якості освіти</h3>
+                    <p>Документи, що регламентують внутрішню систему забезпечення якості освіти у ліцеї.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://docs.google.com/document/d/1Qm810LtjFp1fBL3jCyhs3UtM-S1FLScM/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>
+                                <i class="fas fa-file-word"></i>
+                                <span>ОНОВЛЕНЕ ПОЛОЖЕННЯ ПРО ВНУТРІШНЮ СИСТЕМУ ЗАБЕЗПЕЧЕННЯ ЯКОСТІ ОСВІТИ ЧЕМЕРОВЕЦЬКОГО ЛІЦЕЮ №1</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Стратегія -->
+                <section class="info-section" id="strategy">
+                    <h3>Стратегія</h3>
+                    <p>Стратегія розвитку Чемеровецького ліцею №1 Чемеровецької селищної ради Хмельницької області на 2022-2027 роки</p>
+                    
+                                <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1XyJpzL9ZJxwY3q3Q2m8n7v6k5l4m3n2b/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Стратегія розвитку Чемеровецького ліцею №1 на 2022-2027 роки</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!-- Публічні закупівлі -->
+                <section class="info-section" id="procurement">
+                    <h3>Публічні закупівлі</h3>
+                    <p>Інформація про проведення закупівель товарів, робіт та послуг для закладу освіти.</p>
+                    
+                    <ul class="documents-list">
+                        <li>
+                            <a href="https://drive.google.com/file/d/1AbCdEfGhIjKlMnOpQrStUvWxYz123456/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>План публічних закупівель на 2025 рік</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://drive.google.com/file/d/1BcDeFgHiJkLmNoPqRsTuVwXyZ2345678/view?usp=sharing" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Звіт про виконання закупівель за 1 квартал 2025 року</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="container footer-content">
+            <p>© 2025 Чемеровецький ліцей №1. Всі права захищені.</p>
+            <p>Адреса: 31600, Хмельницька область, смт. Чемерівці, вул. Шкільна, 12</p>
+            <p>Телефон: +38 (03859) 2-11-45 | Email: chem_lyceum1@school.edu.ua</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        // Бургер меню
+        document.getElementById('burgerBtn').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('burgerContent').classList.toggle('active');
+        });
+        
+        // Плавна прокрутка до якорів
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закриваємо бургер меню після кліку (для мобільних пристроїв)
+                    if (window.innerWidth <= 768) {
+                        document.getElementById('burgerBtn').classList.remove('active');
+                        document.getElementById('burgerContent').classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
