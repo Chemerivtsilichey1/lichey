@@ -294,7 +294,7 @@
         margin-bottom: 40px;
     }
 
-        .leader-card {
+       .leader-card {
         background-color: var(--white);
         border-radius: 12px;
         overflow: hidden;
@@ -302,10 +302,9 @@
         display: flex;
         transition: all 0.3s ease;
         position: relative;
-        flex-direction: column; /* Змінюємо на колонку для мобільних */
     }
 
-        .leader-card:hover {
+       .leader-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
@@ -321,10 +320,11 @@
         }
 
         .leader-photo {
-        width: 100%;
-        height: 200px; /* Фіксована висота для всіх фото */
-        object-fit: cover; /* Зберігає пропорції, заповнюючи контейнер */
-        object-position: top center; /* Вирівнює фото по верхньому краю */
+        width: 150px;
+        height: 180px;
+        object-fit: cover;
+        object-position: top center;
+        flex-shrink: 0;
         transition: transform 0.5s;
     }
 
@@ -332,8 +332,9 @@
             transform: scale(1.05);
         }
 
-       .leader-info {
+      .leader-info {
         padding: 20px;
+        flex-grow: 1;
     }
 
         .leader-name {
