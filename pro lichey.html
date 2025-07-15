@@ -288,26 +288,27 @@
 
         /* Блоки про керівництво */
         .leadership-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
 
         .leader-card {
-            background-color: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            display: flex;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+        background-color: var(--white);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        display: flex;
+        transition: all 0.3s ease;
+        position: relative;
+        flex-direction: column; /* Змінюємо на колонку для мобільних */
+    }
 
         .leader-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
 
         .leader-card::before {
             content: '';
@@ -320,21 +321,20 @@
         }
 
         .leader-photo {
-            width: 150px;
-            height: 180px;
-            object-fit: cover;
-            flex-shrink: 0;
-            transition: transform 0.5s;
-        }
+        width: 100%;
+        height: 200px; /* Фіксована висота для всіх фото */
+        object-fit: cover; /* Зберігає пропорції, заповнюючи контейнер */
+        object-position: top center; /* Вирівнює фото по верхньому краю */
+        transition: transform 0.5s;
+    }
 
         .leader-card:hover .leader-photo {
             transform: scale(1.05);
         }
 
-        .leader-info {
-            padding: 20px;
-            flex-grow: 1;
-        }
+       .leader-info {
+        padding: 20px;
+    }
 
         .leader-name {
             font-size: 20px;
@@ -480,73 +480,79 @@
 
         /* Адаптація для мобільних пристроїв */
         @media (max-width: 992px) {
-            .main-content {
-                flex-direction: column;
-            }
-
-            .nav-panel {
-                max-width: 100%;
-                position: static;
-                margin-bottom: 30px;
-            }
-
-            .leadership-section {
-                grid-template-columns: 1fr;
-            }
+        .main-content {
+            flex-direction: column;
         }
 
+            .nav-panel {
+            max-width: 100%;
+            position: static;
+            margin-bottom: 30px;
+        }
+
+            .leadership-section {
+            grid-template-columns: 1fr;
+        }
+    }
+
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
+        .header-content {
+            flex-direction: column;
+            text-align: center;
+        }
 
             .logo {
-                margin-right: 0;
-                margin-bottom: 20px;
-                justify-content: center;
-                width: 100%;
-            }
+            margin-right: 0;
+            margin-bottom: 20px;
+            justify-content: center;
+            width: 100%;
+        }
 
-            .header-right {
-                flex-direction: column;
-                margin-top: 20px;
-                width: 100%;
-                gap: 15px;
-            }
-
-            .social-icons {
-                justify-content: center;
-                margin-bottom: 15px;
-            }
+             .header-right {
+            flex-direction: column;
+            margin-top: 20px;
+            width: 100%;
+            gap: 15px;
+        }
+.social-icons {
+            justify-content: center;
+            margin-bottom: 15px;
+        }
 
             .leader-card {
                 flex-direction: column;
             }
 
-            .leader-photo {
-                width: 100%;
-                height: 250px;
-            }
-
-            .team-photo {
-                height: 300px;
-            }
+           .leader-photo {
+            height: 250px; /* Збільшуємо висоту для кращого відображення */
         }
 
+            .team-photo {
+            height: 300px;
+        }
+    }
+
         @media (max-width: 480px) {
-            .container {
-                width: 95%;
-            }
+        .container {
+            width: 95%;
+        }
 
             .team-section,
-            .achievements-section {
-                padding: 25px;
-            }
+        .achievements-section {
+            padding: 25px;
+        }
 
-            .section-title {
-                font-size: 24px;
-            }
+           .section-title {
+            font-size: 24px;
+        }
+             /* Додаткові корективи для маленьких екранів */
+        .leader-photo {
+            height: 220px; /* Оптимальна висота для дуже малих екранів */
+        }
+
+        .leader-card {
+            margin-bottom: 20px; /* Додатковий відступ між картками */
+        }
         }
     </style>
 </head>
