@@ -657,85 +657,112 @@
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Поточний рік у футері
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Поточний рік у футері
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // Дані новин
-            const newsData = [
-               {
-                    title: "Неймовірні канікули з Rect Camp 25 у Болгарії!",
-                    image: "imeg/болгарія.jpg",
-                    date: "27 липня- 10 серпня 2025",
-                    text: "З 27 липня по 10 серпня учні нашого ліцею провели незабутні канікули у мовному таборі Rect Camp 25 у Болгарії. Хвилюючі хвилі теплого Чорного моря, відпочинок у басейнах, захопливі екскурсії, вечірні розваги та цікаві інтерактивні уроки англійської мови – усе це створило неповторну атмосферу навчання та відпочинку!",
-                    YouTube: "https://youtu.be/4do3wcnlVcI?si=fJcGUHY_fC9QTQtS"
-                },
-                {
-                    title: "Випуск 2025",
-                    image: "imeg/зображення_viber_2025-07-03_11-59-02-597.jpg",
-                    date: "7 червня 2025",
-                    text: "Світ чекає",
-                    facebook: "https://www.facebook.com/share/p/1Gy42G86tT/"
-                },
-                {
-                    title: "200 бальники",
-                    image: "imeg/зображення_viber_2025-07-03_12-30-56-995.jpg",
-                    date: "20 червня 2025",
-                    text: "Вітаємо наших випускників Максима Шатковського та Катерину Грехову з фантастичним досягненням — 200 балів з української мови на НМТ! Висловлюємо подяку Максиму та Катерині та вчителю Олені Чухрій. Бо за кожними 200 балами — сотні спільних кроків. Бажаємо подальших успіхів, впевненості у власних силах і нових перемог.❤️",
-                    facebook: "https://www.facebook.com/share/p/19SjcdPB7C/"
-                },
-                {
-                    title: "Випускний вальс",
-                    image: "imeg/Screenshot_2.jpg",
-                    date: "7 червня 2025",
-                    text: "Вальс 11 Б",
-                    facebook: "https://www.facebook.com/share/v/1YJ3yCxjwu/"
-                },
-                {
-                    title: "Наша гордість. Юні Джурівці'",
-                    image: "imeg/5a27b4f23365a834159541.png",
-                    date: "22 травня 2025",
-                    text: "21 травня на базі нашого ліцею відбувся перший етап дитячо-юнацької,військово-патріотичної гри «Сокіл»(«Джура»).Наша команда «Сіроманці» 🐺продемонстрували високий рівень підготовки,велику силу духу,відданість своїй справі!Пишаємось вами,наші юні патріоти!❤️❤️❤️",
-                    facebook: "https://www.facebook.com/share/v/1G5tVBx5gq/"
-                }
-            ];
-
-            // Функція для відображення новин
-            function renderNews() {
-                const newsContainer = document.getElementById('newsContainer');
-                newsContainer.innerHTML = '';
-
-                newsData.forEach(news => {
-                    const newsCard = document.createElement('article');
-                    newsCard.className = 'news-card';
-                    
-                    newsCard.innerHTML = `
-                        <div class="news-image-container">
-                            <img src="${news.image}" alt="${news.title}" class="news-image">
-                        </div>
-                        <div class="news-content">
-                            <h3 class="news-title">${news.title}</h3>
-                            <p class="news-date">${news.date}</p>
-                            <p class="news-excerpt">${news.text}</p>
-                            ${news.facebook ? `<a href="${news.facebook}" class="facebook-link" target="_blank">Переглянути у Facebook <i class="fab fa-facebook"></i></a>` : ''}
-                            ${news.YouTube ? `<a href="${news.YouTube}" class="facebook-link" target="_blank">Переглянути на YouTube <i class="fab fa-facebook"></i></a>` : ''}
-                            
-                        </div>
-                    `;
-                    
-                    newsContainer.appendChild(newsCard);
-                });
+        // Дані новин
+        const newsData = [
+            {
+                title: "Неймовірні канікули з Rect Camp 25 у Болгарії!",
+                image: "imeg/болгарія.jpg",
+                date: "27 липня- 10 серпня 2025",
+                text: "З 27 липня по 10 серпня учні нашого ліцею провели незабутні канікули у мовному таборі Rect Camp 25 у Болгарії. Хвилюючі хвилі теплого Чорного моря, відпочинок у басейнах, захопливі екскурсії, вечірні розваги та цікаві інтерактивні уроки англійської мови – усе це створило неповторну атмосферу навчання та відпочинку!",
+                YouTube: "https://youtu.be/4do3wcnlVcI?si=fJcGUHY_fC9QTQtS"
+            },
+            {
+                title: "Випуск 2025",
+                image: "imeg/зображення_viber_2025-07-03_11-59-02-597.jpg",
+                date: "7 червня 2025",
+                text: "Світ чекає",
+                facebook: "https://www.facebook.com/share/p/1Gy42G86tT/"
+            },
+            {
+                title: "200 бальники",
+                image: "imeg/зображення_viber_2025-07-03_12-30-56-995.jpg",
+                date: "20 червня 2025",
+                text: "Вітаємо наших випускників Максима Шатковського та Катерину Грехову з фантастичним досягненням — 200 балів з української мови на НМТ! Висловлюємо подяку Максиму та Катерині та вчителю Олені Чухрій. Бо за кожними 200 балами — сотні спільних кроків. Бажаємо подальших успіхів, впевненості у власних силах і нових перемог.❤️",
+                facebook: "https://www.facebook.com/share/p/19SjcdPB7C/"
+            },
+            {
+                title: "Випускний вальс",
+                image: "imeg/Screenshot_2.jpg",
+                date: "7 червня 2025",
+                text: "Вальс 11 Б",
+                facebook: "https://www.facebook.com/share/v/1YJ3yCxjwu/"
+            },
+            {
+                title: "Наша гордість. Юні Джурівці'",
+                image: "imeg/5a27b4f23365a834159541.png",
+                date: "22 травня 2025",
+                text: "21 травня на базі нашого ліцею відбувся перший етап дитячо-юнацької,військово-патріотичної гри «Сокіл»(«Джура»).Наша команда «Сіроманці» 🐺продемонстрували високий рівень підготовки,велику силу духу,відданість своїй справі!Пишаємось вами,наші юні патріоти!❤️❤️❤️",
+                facebook: "https://www.facebook.com/share/v/1G5tVBx5gq/"
             }
+        ];
 
-            // Ініціалізація сторінки
-            renderNews();
-        });
-    </script>
+        // Функція для відображення новин
+        function renderNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            newsContainer.innerHTML = '';
+
+            newsData.forEach(news => {
+                const newsCard = document.createElement('article');
+                newsCard.className = 'news-card';
+                
+                newsCard.innerHTML = `
+                    <div class="news-image-container">
+                        <img src="${news.image}" alt="${news.title}" class="news-image" onclick="openModal('${news.image}', '${news.title}')">
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">${news.title}</h3>
+                        <p class="news-date">${news.date}</p>
+                        <p class="news-excerpt">${news.text}</p>
+                        ${news.facebook ? `<a href="${news.facebook}" class="facebook-link" target="_blank">Переглянути у Facebook <i class="fab fa-facebook"></i></a>` : ''}
+                        ${news.YouTube ? `<a href="${news.YouTube}" class="facebook-link" target="_blank">Переглянути на YouTube <i class="fab fa-youtube"></i></a>` : ''}
+                    </div>
+                `;
+                
+                newsContainer.appendChild(newsCard);
+            });
+        }
+
+        // Ініціалізація сторінки
+        renderNews();
+    });
+
+    // Функції для роботи з модальним вікном
+    function openModal(imgSrc, imgAlt) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('caption');
+        
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+        captionText.innerHTML = imgAlt;
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').style.display = "none";
+    }
+
+    // Закриття модального вікна при кліку на хрестик або поза зображенням
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target === modal || event.target.className === 'close') {
+            closeModal();
+        }
+    });
+
+    // Додамо функцію closeModal у глобальну область видимості
+    window.closeModal = closeModal;
+    window.openModal = openModal;
+</script>
 </body>
 
 
 </html>
+
 
 
 
