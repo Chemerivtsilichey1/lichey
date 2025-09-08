@@ -451,6 +451,28 @@
             height: 150px;
         }
 
+        /* Спеціальний контейнер для розкладу дзвінків */
+        .bells-schedule-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bells-schedule {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .bells-schedule:hover {
+            transform: scale(1.02);
+        }
+
         /* Адаптація для мобільних пристроїв */
         @media (max-width: 768px) {
             .header-content {
@@ -498,6 +520,10 @@
                 top: 10px;
                 right: 20px;
                 font-size: 30px;
+            }
+            
+            .bells-schedule-container {
+                border-radius: 8px;
             }
         }
     </style>
@@ -593,11 +619,15 @@
                         <a href="https://docs.google.com/document/d/17NONJvJG7sq1u0X40_Xy23_-snx8OPxI/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" class="methodical-link">Завантажити розклад</a>
                     </div>
                 </section>
+                
+                <!-- Блок з розкладом дзвінків -->
                  <section class="team-section">
                     <h3 class="section-title">Розклад дзвінків</h3>
-                    <img src="imeg/дзвінки.jpg" alt="Розклад дзвінків" class="team-photo" onclick="openModal(this)">
+                    <div class="bells-schedule-container">
+                        <img src="imeg/дзвінки.jpg" alt="Розклад дзвінків" class="bells-schedule" onclick="openModal(this)">
+                    </div>
                     <div class="team-description">
-                       
+                        <p>Розклад уроків та перерв для всіх класів на поточний навчальний рік.</p>
                     </div>
                 </section>
                 
@@ -618,10 +648,8 @@
         </li>
         
         <li>
-            <i class="fas fa-file-word">
-                <a href="https://docs.google.com/document/d/1_p4_f5xvuIksh_rB2WCcKFs90RTAcSEE/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>РЕЖИМ РОБОТИ Чемеровецького ліцею №1 на 2024-2025 навчальний рік</a>
-
-            </i>
+            <i class="fas fa-file-word"></i>
+            <a href="https://docs.google.com/document/d/1_p4_f5xvuIksh_rB2WCcKFs90RTAcSEE/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" download>РЕЖИМ РОБОТИ Чемеровецького ліцею №1 на 2024-2025 навчальний рік</a>
         </li>
     </ul>
     
@@ -658,8 +686,12 @@
             // Перевіряємо всі зображення на наявність помилок завантаження
             document.querySelectorAll('img').forEach(img => {
                 img.onerror = function() {
-                    this.style.display = 'none';
                     console.log('Зображення не знайдено: ' + this.src);
+                    // Якщо зображення не завантажилось, показуємо заглушку
+                    if (this.src.includes('дзвінки.jpg')) {
+                        this.onerror = null;
+                        this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23e3f2fd"/><text x="400" y="200" font-family="Arial" font-size="24" text-anchor="middle" fill="%230d47a1">Розклад дзвінків</text><text x="400" y="240" font-family="Arial" font-size="18" text-anchor="middle" fill="%231e88e5">Натисніть для перегляду повної версії</text></svg>';
+                    }
                 };
             });
         });
@@ -673,6 +705,16 @@
             modal.style.display = "flex";
             modalImg.src = img.src;
             captionText.innerHTML = img.alt;
+            
+            // Спеціальна обробка для розкладу дзвінків
+            if (img.src.includes('дзвінки.jpg') || img.alt.includes('дзвінків')) {
+                modalImg.style.maxWidth = '80%';
+                modalImg.style.maxHeight = '80%';
+                modalImg.style.objectFit = 'contain';
+            } else {
+                modalImg.style.maxWidth = '90%';
+                modalImg.style.maxHeight = '90%';
+            }
         }
 
         function closeModal() {
