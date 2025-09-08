@@ -160,6 +160,12 @@
             border-radius: 10px;
             margin-bottom: 20px;
             border: 5px solid #e3f2fd;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .team-photo:hover {
+            transform: scale(1.02);
         }
 
         .team-description {
@@ -193,6 +199,7 @@
             height: 180px;
             object-fit: cover;
             flex-shrink: 0;
+            cursor: pointer;
         }
 
         .leader-info {
@@ -392,6 +399,58 @@
             opacity: 0.8;
         }
 
+        /* Модальне вікно для зображень */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
         /* Адаптація для мобільних пристроїв */
         @media (max-width: 768px) {
             .header-content {
@@ -428,6 +487,17 @@
 
             .methodical-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                max-width: 95%;
+                max-height: 80%;
+            }
+
+            .close {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
             }
         }
     </style>
@@ -517,7 +587,7 @@
                 <!-- Блок з розкладом -->
                 <section class="team-section">
                     <h3 class="section-title">Розклад занять</h3>
-                    <img src="imeg/Screenshot_4.jpg" alt="Розклад занять" class="team-photo">
+                    <img src="imeg/Screenshot_4.jpg" alt="Розклад занять" class="team-photo" onclick="openModal(this)">
                     <div class="team-description">
                         <p>Актуальний розклад занять для всіх класів на поточний навчальний рік.</p>
                         <a href="https://docs.google.com/document/d/17NONJvJG7sq1u0X40_Xy23_-snx8OPxI/edit?usp=sharing&ouid=103855957559017281410&rtpof=true&sd=true" class="methodical-link">Завантажити розклад</a>
@@ -525,7 +595,7 @@
                 </section>
                  <section class="team-section">
                     <h3 class="section-title">Розклад дзвінків</h3>
-                    <img src="imeg/дзвінки.jpg" alt="Розклад дзвінків" class="team-photo">
+                    <img src="imeg/дзвінки.jpg" alt="Розклад дзвінків" class="team-photo" onclick="openModal(this)">
                     <div class="team-description">
                        
                     </div>
@@ -557,6 +627,13 @@
     
 </section>
 
+    <!-- Модальне вікно для зображень -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="caption"></div>
+    </div>
+
     <!-- Футер -->
    <footer>
         <div class="container footer-content">
@@ -577,12 +654,47 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Встановлюємо поточний рік у футері
             document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Перевіряємо всі зображення на наявність помилок завантаження
+            document.querySelectorAll('img').forEach(img => {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    console.log('Зображення не знайдено: ' + this.src);
+                };
+            });
         });
         
+        // Функції для модального вікна зображень
+        function openModal(img) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const captionText = document.getElementById("caption");
+            
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        
+        // Закривати модальне вікно при кліку поза ним
+        window.onclick = function(event) {
+            const modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Закривати модальне вікно при натисканні клавіші Esc
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
     </script>
     
 </body>
 
-
 </html>
-
