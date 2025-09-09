@@ -397,6 +397,106 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* Стилі для посилання на Facebook */
+.facebook-post-link {
+    margin: 20px 0;
+}
+
+.fb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background-color: #3b5998;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.fb-link:hover {
+    background-color: #2d4373;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+}
+/* Стилі для великого зображення Facebook */
+.facebook-image-container {
+    margin: 25px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facebook-image-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.facebook-image-link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+}
+
+.facebook-image-link img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.facebook-image-link:hover img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(59, 89, 152, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.facebook-image-link:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-overlay i {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.image-overlay span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+    .facebook-image-link img {
+        height: 250px;
+    }
+    
+    .image-overlay i {
+        font-size: 36px;
+    }
+    
+    .image-overlay span {
+        font-size: 16px;
+    }
+}
     </style>
 </head>
 <body>
@@ -592,14 +692,33 @@
                 </section>
                 
                 <!-- ХОМА -->
-                <section class="info-section" id="homa">
-                    <h3>ХОМА</h3>
-                    <p></p>
-                    <div class="video-container">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/zEkvpG7p_Lw?si=cov3W1oG1af2HdVH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    
-                </section>
+<section class="info-section" id="homa">
+    <h3>ХОМА</h3>
+    <p></p>
+    
+    <!-- Посилання на пост у Facebook -->
+    <div class="facebook-post-link">
+        <h4>Рейд безпеки дорожнього руху «Увага! Діти на дорозі» за участю ХОМИ та інспектора СОБ 👮‍♀️  #Безпечнакраїна  #безпекадорожньогоруху  #УВАГАдітинадорозі</h4>
+        <a href="https://www.facebook.com/share/v/1CMaX4m7eE/" target="_blank" class="fb-link">
+            <i class="fab fa-facebook"></i>
+            <span>Перейти до посту на Facebook</span>
+        </a>
+    </div>
+    
+     <div class="facebook-image-container">
+        <a href="https://www.facebook.com/share/v/1CMaX4m7eE/" target="_blank" class="facebook-image-link">
+            <img src="imeg/хома2.jpg" alt="ХОМА діяльність">
+            <div class="image-overlay">
+                <i class="fab fa-facebook-f"></i>
+                <span>Перейти до посту</span>
+            </div>
+        </a>
+    </div>
+    
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/zEkvpG7p_Lw?si=cov3W1oG1af2HdVH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+</section>
                 
                 <!-- Виховні заходи -->
                 <section class="info-section" id="events">
@@ -753,6 +872,7 @@
     </script>
 </body>
 </html>
+
 
 
 
