@@ -230,19 +230,78 @@
             line-height: 1.8;
         }
         
-        /* Facebook пости */
-        .facebook-embed {
+        /* Картки Facebook постів */
+        .facebook-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin: 30px 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
         }
         
-        .facebook-post {
-            width: 100%;
-            border: none;
+        .facebook-card {
+            background-color: white;
+            border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .facebook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .fb-post-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .fb-post-content {
+            padding: 20px;
+        }
+        
+        .fb-post-title {
+            color: #0d47a1;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .fb-post-text {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #555;
+            max-height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .fb-post-text:after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: white;
+            padding: 0 5px;
+        }
+        
+        .fb-post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 14px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .fb-icon {
+            color: #1877F2;
+            font-size: 18px;
         }
         
         /* Футер */
@@ -301,14 +360,18 @@
                 max-width: 100%;
             }
             
-            .facebook-post {
-                height: 500px;
+            .fb-post-image {
+                height: 200px;
             }
         }
         
         @media (max-width: 480px) {
-            .facebook-post {
-                height: 400px;
+            .fb-post-image {
+                height: 180px;
+            }
+            
+            .fb-post-text {
+                max-height: 120px;
             }
         }
     </style>
@@ -347,7 +410,7 @@
                     </li>
                     <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
                     <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
-                    <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
+                    <li><a href="psuholog.html" class="active"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
                     <li><a href="atestachiy.html"><i class="fas fa-graduation-cap"></i> Атестація</a></li>
                     <li><a href="zverneny grom.html"><i class="fas fa-envelope"></i> Звернення громадян</a></li>
                     <li><a href="harchobloc.html"><i class="fas fa-utensils"></i> Харчоблок</a></li>
@@ -445,13 +508,26 @@
                     </ul>
                 </div>
                 
-                <!-- Facebook пости -->
-                <div class="facebook-embed">
-                    <iframe class="facebook-post" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0RV7JfPKhzt2JRDYBoZ1RqA1u36mXsLRV2KdapawxEb5fJpovWESLhgAVgUVeUnqyl%26id%3D100069310323485&show_text=true&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                </div>
-                
-                <div class="facebook-embed">
-                    <iframe class="facebook-post" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F1588547401835363%2F&show_text=false&width=500&height=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <!-- Картки Facebook постів -->
+                <div class="facebook-posts">
+                   
+                    
+                    <!-- Приклад картки Facebook посту -->
+                    <a href="https://www.facebook.com/share/v/1Znypryn3e/" target="_blank" class="facebook-card">
+                        <img src="imeg/рівні.jpg" alt="Психологічна підтримка" class="fb-post-image">
+                        <div class="fb-post-content">
+                            <h4 class="fb-post-title">Тиждень толерантності</h4>
+                            <p class="fb-post-text">Упродовж цього тижня наш ліцей жив у атмосфері поваги, доброти та відкритості. Ми разом нагадали собі, що толерантність — це не просто слово, а щоденна практика, яка формує безпечний і дружній простір для кожного.🤍🧡❤️💚💙</p>
+                            <div class="fb-post-meta">
+                                <span>Опубліковано: 21.11.2025</span>
+                                <i class="fab fa-facebook fb-icon"></i>
+                            </div>
+                        </div>
+                    </a>
+                    
+                   
+                    
+                    
                 </div>
             </main>
         </div>
@@ -485,6 +561,18 @@
             'resizeDuration': 200,
             'wrapAround': true,
             'albumLabel': 'Зображення %1 з %2'
+        });
+
+        // Встановлення активної сторінки в меню
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const menuItems = document.querySelectorAll('.nav-menu a');
+            
+            menuItems.forEach(item => {
+                if (item.getAttribute('href') === currentPage) {
+                    item.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
