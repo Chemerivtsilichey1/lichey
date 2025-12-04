@@ -230,6 +230,32 @@
             line-height: 1.8;
         }
         
+        /* Стилі для Facebook постів */
+        .facebook-embed-container {
+            margin: 20px 0;
+        }
+        
+        .facebook-post {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            border: none;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .facebook-video {
+            width: 100%;
+            max-width: 500px;
+            height: 818px;
+            margin: 20px auto;
+            border: none;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
         /* Футер */
         footer {
             background: linear-gradient(135deg, #1e88e5, #0d47a1);
@@ -284,6 +310,19 @@
             .gallery a {
                 flex: 1 1 100%;
                 max-width: 100%;
+            }
+            
+            .facebook-post,
+            .facebook-video {
+                max-width: 100%;
+                height: 500px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .facebook-post,
+            .facebook-video {
+                height: 400px;
             }
         }
     </style>
@@ -450,25 +489,18 @@
                         <li>Діагностика психологічного стану учнів</li>
                     </ul>
                 </div>
-                <div class="main-container">
-                    <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0RV7JfPKhzt2JRDYBoZ1RqA1u36mXsLRV2KdapawxEb5fJpovWESLhgAVgUVeUnqyl%26id%3D100069310323485&show_text=true&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                </div>
-                <div class="main-container">
-                    <iframe src="https://www.facebook.com/share/v/1HMLJNGhKw/" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                
+                <!-- Facebook пости -->
+                <div class="facebook-embed-container">
+                    <iframe class="facebook-post" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0RV7JfPKhzt2JRDYBoZ1RqA1u36mXsLRV2KdapawxEb5fJpovWESLhgAVgUVeUnqyl%26id%3D100069310323485&show_text=true&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
                 
-                <!-- Ще одна галерея -->
-               <!-- <div class="gallery">
-                    <a href="images/psychologist4.jpg" data-lightbox="psychologist" data-title="Профільна консультація">
-                        <img src="images/psychologist4-thumb.jpg" alt="Профільна консультація">
-                    </a>
-                    <a href="images/psychologist5.jpg" data-lightbox="psychologist" data-title="Групова робота">
-                        <img src="images/psychologist5-thumb.jpg" alt="Групова робота">
-                    </a>
+                <div class="facebook-embed-container">
+                    <iframe class="facebook-video" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1HMLJNGhKw%2F&show_text=false&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
             </main>
         </div>
-    </div>-->
+    </div>
     
     <!-- Футер -->
     <footer>
@@ -501,12 +533,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
