@@ -230,30 +230,19 @@
             line-height: 1.8;
         }
         
-        /* Стилі для Facebook постів */
-        .facebook-embed-container {
-            margin: 20px 0;
+        /* Facebook пости */
+        .facebook-embed {
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
         }
         
         .facebook-post {
             width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
             border: none;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .facebook-video {
-            width: 100%;
-            max-width: 500px;
-            height: 818px;
-            margin: 20px auto;
-            border: none;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* Футер */
@@ -312,16 +301,13 @@
                 max-width: 100%;
             }
             
-            .facebook-post,
-            .facebook-video {
-                max-width: 100%;
+            .facebook-post {
                 height: 500px;
             }
         }
         
         @media (max-width: 480px) {
-            .facebook-post,
-            .facebook-video {
+            .facebook-post {
                 height: 400px;
             }
         }
@@ -389,7 +375,7 @@
                     
                 </div>
                 
-                <!-- Відео -->
+                <!-- Відео з Facebook -->
                 <div class="video-container">
                     <iframe src="https://www.facebook.com/plugins/video.php?height=297&href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F2761417340709039%2F&show_text=false&width=560&t=0" width="560" height="297" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
                 </div>
@@ -403,77 +389,46 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://docs.google.com/document/d/1S8FdAz8lmMDHG4kCiw1_w3AB2gpDmlUW/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1S8FdAz8lmMDHG4kCiw1_w3AB2gpDmlUW/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>Заходи
-щодо запобігання та протидії
-вербування і тероризму 
-у Чемеровецькому ліцеї №1
-</span>
+                            <span>Заходи щодо запобігання та протидії вербування і тероризму у Чемеровецькому ліцеї №1</span>
                         </a>
                     </li>
                      <li>
-                        <a href="https://docs.google.com/document/d/1laXj7BvfbufJetONFngYCqwSxZVtUs8u/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1laXj7BvfbufJetONFngYCqwSxZVtUs8u/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>Дослідження проблеми булінгу 
-в Чемеровецькому ліцеї №1
-
-</span>
+                            <span>Дослідження проблеми булінгу в Чемеровецькому ліцеї №1</span>
                         </a>
                     </li>
                      <li>
-                        <a href="https://docs.google.com/document/d/1u5-zN6EuCcFLq8rwlpyD9O-0kn4vL2fy/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1u5-zN6EuCcFLq8rwlpyD9O-0kn4vL2fy/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>План  проведення тижня психології «Подорож стежками Психології»
-в Чемеровецькому ліцеї №1
-
-
-</span>
+                            <span>План проведення тижня психології «Подорож стежками Психології» в Чемеровецькому ліцеї №1</span>
                         </a>
                     </li>
                     <li>
-                        <a href="https://docs.google.com/document/d/1MtcyY7D3F44XgiO5hJv9rPirbF4DkD3_/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1MtcyY7D3F44XgiO5hJv9rPirbF4DkD3_/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>Коли та чому варто звертатися до шкільного психолога
-
-</span>
+                            <span>Коли та чому варто звертатися до шкільного психолога</span>
                         </a>
                     </li>
-                    
                      <li>
-                        <a href="https://docs.google.com/document/d/1alS94dIIQFketHHgaR1r_5_WPOybKZyn/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1alS94dIIQFketHHgaR1r_5_WPOybKZyn/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>Школа для всіх: як навчитися бачити можливості, а не обмеження
-
-
-</span>
- </a>
+                            <span>Школа для всіх: як навчитися бачити можливості, а не обмеження</span>
+                         </a>
                     </li>
                      <li>
-                        <a href="https://docs.google.com/document/d/1G8NmuMhts4Hq6_rN7Gx7ZflvU1qmNWNs/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1G8NmuMhts4Hq6_rN7Gx7ZflvU1qmNWNs/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>Порядок реагування на випадки булінгу(цькування)
-
-
-</span>
- </a>
+                            <span>Порядок реагування на випадки булінгу(цькування)</span>
+                         </a>
                     </li>
                      <li>
-                        <a href="https://docs.google.com/document/d/1_JVPueQYM9ynRotuOHfBOVbxrmKhbXi3/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" download>
+                        <a href="https://docs.google.com/document/d/1_JVPueQYM9ynRotuOHfBOVbxrmKhbXi3/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
                             <i class="fas fa-file-word"></i>
-                            <span>Корисні посилання щодо допомоги та підтримки в ситуаціях булінгу, насильства, торгівлі людьми або складних життєвих обставин:
-
-в Чемеровецькому ліцеї №1
-
-
-</span>
- </a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/example" target="_blank">
-                            <i class="fab fa-facebook"></i>
-                            <span>Додаткові матеріали на Facebook</span>
-                        </a>
+                            <span>Корисні посилання щодо допомоги та підтримки в ситуаціях булінгу, насильства, торгівлі людьми або складних життєвих обставин</span>
+                         </a>
                     </li>
                 </ul>
                 
@@ -491,12 +446,12 @@
                 </div>
                 
                 <!-- Facebook пости -->
-                <div class="facebook-embed-container">
+                <div class="facebook-embed">
                     <iframe class="facebook-post" src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0RV7JfPKhzt2JRDYBoZ1RqA1u36mXsLRV2KdapawxEb5fJpovWESLhgAVgUVeUnqyl%26id%3D100069310323485&show_text=true&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
                 
-                <div class="facebook-embed-container">
-                    <iframe class="facebook-video" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1HMLJNGhKw%2F&show_text=false&width=500" width="500" height="818" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <div class="facebook-embed">
+                    <iframe class="facebook-post" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F100069310323485%2Fvideos%2F1588547401835363%2F&show_text=false&width=500&height=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
             </main>
         </div>
