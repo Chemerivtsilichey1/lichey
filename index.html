@@ -287,6 +287,23 @@
             height: fit-content;
             position: sticky;
             top: 100px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* Стилі для смуги прокрутки в навігаційній панелі */
+        .nav-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .nav-panel::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 3px;
+        }
+
+        .nav-panel::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 3px;
         }
 
         .nav-panel h2 {
@@ -563,6 +580,8 @@
                 max-width: 100%;
                 position: static;
                 margin-bottom: 30px;
+                max-height: none;
+                overflow-y: visible;
             }
         }
 
@@ -1014,8 +1033,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
