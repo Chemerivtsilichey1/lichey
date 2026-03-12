@@ -84,6 +84,9 @@
             --text-color: #212529;
             --light-gray: #e9ecef;
             --gray: #6c757d;
+            --google-drive-color: #34a853;
+            --facebook-color: #1877f2;
+            --youtube-color: #ff0000;
         }
 
         * {
@@ -103,14 +106,6 @@
             text-decoration: none;
             color: inherit;
             transition: color 0.3s;
-        }
-
-        button,
-        input,
-        textarea,
-        select {
-            font-family: inherit;
-            font-size: inherit;
         }
 
         .container {
@@ -489,17 +484,60 @@
             color: var(--secondary-dark);
         }
 
-        .facebook-link {
-            display: inline-block;
-            color: #1877f2;
-            font-weight: 500;
-            font-size: 14px;
-            margin-top: 10px;
-            transition: color 0.3s;
+        /* Стилі для посилань */
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .facebook-link:hover {
-            color: #0d5bca;
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background-color: #f0f2f5;
+        }
+
+        .news-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-link.facebook {
+            color: var(--facebook-color);
+        }
+
+        .news-link.facebook:hover {
+            background-color: var(--facebook-color);
+            color: white;
+        }
+
+        .news-link.youtube {
+            color: var(--youtube-color);
+        }
+
+        .news-link.youtube:hover {
+            background-color: var(--youtube-color);
+            color: white;
+        }
+
+        .news-link.googledrive {
+            color: var(--google-drive-color);
+        }
+
+        .news-link.googledrive:hover {
+            background-color: var(--google-drive-color);
+            color: white;
+        }
+
+        .news-link i {
+            font-size: 14px;
         }
 
         /* Кнопка "Читати далі" */
@@ -718,6 +756,14 @@
                 padding: 12px 25px;
                 font-size: 15px;
             }
+            
+            .links-container {
+                flex-direction: column;
+            }
+            
+            .news-link {
+                width: fit-content;
+            }
         }
     </style>
 </head>
@@ -735,14 +781,10 @@
             </div>
             <div class="header-right">
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i
-                            class="fab fa-youtube"></i></a>
-                    <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i
-                            class="fab fa-telegram"></i></a>
+                    <a href="https://www.facebook.com/share/18seCpfk2s/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://telegram.org" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
         </div>
@@ -768,8 +810,7 @@
                     <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
                     <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
                     <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
-                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a>
-                    </li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a></li>
                     <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
                     <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
                     <li><a href="psuholog.html"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
@@ -782,17 +823,12 @@
             <!-- Блок новин -->
             <section class="news-section">
                 <h2>Останні новини</h2>
-                <div class="news-grid" id="newsContainer">
-                    <!-- Новіни будуть додані через JavaScript -->
-                </div>
-                
-                <!-- Контейнер для кнопки "Читати далі" -->
-                <div class="load-more-container" id="loadMoreContainer">
-                    <!-- Кнопка з'явиться через JavaScript -->
-                </div>
+                <div class="news-grid" id="newsContainer"></div>
+                <div class="load-more-container" id="loadMoreContainer"></div>
             </section>
         </div>
     </div>
+
     <!-- Модальне вікно для збільшення зображень -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
@@ -818,264 +854,344 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Поточний рік у футері
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // Дані новин
+            // Дані новин з масивом посилань
             const newsData = [
                 {
                     title: "Кращий догляд для кожної дитини: розвиток соціальних послуг та системи захисту дітей у Хмельницькій області",
                     image: "imeg/karitas-6.jpg",
-                    date: " ",
-                    text: " У межах проєкту Кращий догляд для кожної дитини: розвиток соціальних послуг та системи захисту дітей у Хмельницькій області, що реалізується РМ Карітас-Спес Україна за сприяння ЮНІСЕФ та фінансової підтримки Європейського Союзу та Уряду Канади у співпраці з Координаційним центром з розвитку сімейного виховання та догляду дітей і Хмельницькою обласною державною адміністрацією, створено відеоролики про родини нашого регіону. ",
-                    facebook: "https://drive.google.com/file/d/1qVf1rGdug7i5wLBs2YpvWoYoNd2F0NBa/view?usp=sharing"
-                    
+                    date: "2026",
+                    text: "У межах проєкту Кращий догляд для кожної дитини: розвиток соціальних послуг та системи захисту дітей у Хмельницькій області, що реалізується РМ «Карітас-Спес Україна» за сприяння ЮНІСЕФ та фінансової підтримки Європейського Союзу та Уряду Канади у співпраці з Координаційним центром з розвитку сімейного виховання та догляду дітей і Хмельницькою обласною державною адміністрацією, створено відеоролики про родини нашого регіону.",
+                    links: [
+                        { type: "googledrive", url: "https://drive.google.com/file/d/1qVf1rGdug7i5wLBs2YpvWoYoNd2F0NBa/view?usp=sharing", text: "Відео 1" },
+                        { type: "googledrive", url: "https://drive.google.com/file/d/1kunGs9UMeU4b7Tb3gsZ6bskZJZBHkQAS/view?usp=sharing", text: "Відео 2" }
+                    ]
                 },
                 {
                     title: "Ваші права під захистом",
                     image: "imeg/захист прав людини.jpg",
-                    date: " ",
-                    text: " Представництво Уповноваженого ВРУ з прав людини в Хмельницькій області ",
-                    facebook: "https://www.facebook.com/khmelnitsky.ombudsman?rdid=H1dabadMJuoADqrR&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FY4kWeCcB%2F#"
+                    date: "2026",
+                    text: "Представництво Уповноваженого ВРУ з прав людини в Хмельницькій області",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/khmelnitsky.ombudsman?rdid=H1dabadMJuoADqrR&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FY4kWeCcB%2F#", text: "Сторінка Facebook" }
+                    ]
                 },
                 {
-                    title: "Ваш голос важливий!«Скринька довіри» – ваш анонімний простір для звернень.",
+                    title: "Ваш голос важливий! «Скринька довіри» – ваш анонімний простір для звернень.",
                     image: "imeg/скринька довіри.jpg",
-                    date: " ",
-                    text: " У нашому закладі тепер працює «Скринька довіри» – спеціальна електронна скринька для анонімних та конфіденційних звернень. Цей інструмент призначений для учнів, батьків та співробітників. Електронна адреса для звернень: skrinkadoviri396@gmail.com. Ми гарантуємо конфіденційність кожного повідомлення. «Скринька довіри» – це ваш шанс бути почутими та внести свій внесок у розвиток нашого спільного освітнього простору. Не вагайтеся! Ваша думка має значення.",
-                    
+                    date: "2026",
+                    text: "У нашому закладі тепер працює «Скринька довіри» – спеціальна електронна скринька для анонімних та конфіденційних звернень. Цей інструмент призначений для учнів, батьків та співробітників. Електронна адреса для звернень: skrinkadoviri396@gmail.com. Ми гарантуємо конфіденційність кожного повідомлення. «Скринька довіри» – це ваш шанс бути почутими та внести свій внесок у розвиток нашого спільного освітнього простору. Не вагайтеся! Ваша думка має значення.",
+                    links: []
                 },
                 {
                     title: "Сьогоднішній день став особливим для нашого закладу",
                     image: "imeg/патріоти.jpg",
-                    date: "12 лютого 2026 року ",
-                    text: "військової частини за наш вагомий внесок у придбанні автомобіля для воїнів. Ця відзнака — більше ніж нагорода. Це визнання нашої спільної праці, небайдужості та єдності. Кожен, хто долучився, став частиною великої справи підтримки наших захисників. Допомагаємо, бо віримо в силу ЗСУ 💙💛"
-                    
+                    date: "12 лютого 2026 року",
+                    text: "Військової частини за наш вагомий внесок у придбанні автомобіля для воїнів. Ця відзнака — більше ніж нагорода. Це визнання нашої спільної праці, небайдужості та єдності. Кожен, хто долучився, став частиною великої справи підтримки наших захисників. Допомагаємо, бо віримо в силу ЗСУ 💙💛",
+                    links: []
                 },
                 {
                     title: "Твій вибір може стати чиїмось порятунком 🙌🏻",
                     image: "imeg/безпека.jpg",
-                    date: "12 лютого 2026 року ",
-                    text: ""
-                    
+                    date: "12 лютого 2026 року",
+                    text: "",
+                    links: []
                 },
-                 {
+                {
                     title: "НМТ 2026",
                     image: "imeg/YVN.jpg",
-                    date: "10 лютого 2026 року ",
-                    text: ""
-                    
+                    date: "10 лютого 2026 року",
+                    text: "",
+                    links: []
                 },
                 {
                     title: "Воркшоп у початковій школі",
                     image: "imeg/воркшоп.jpg",
-                    date: "13 січня 2026 року ",
+                    date: "13 січня 2026 року",
                     text: "Професійна готовність педагогів до роботи в інклюзивному середовищі. Організація І рівня підтримки в освітньому процесі",
-                    facebook:"https://www.facebook.com/share/p/1aeA3ywAPH/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1aeA3ywAPH/", text: "Деталі заходу" }
+                    ]
                 },
                 {
                     title: "Хто володіє інформацією, той володіє світом 👩‍💻",
                     image: "imeg/голод.jpg",
-                    date: "12 січня 2026 року ",
+                    date: "12 січня 2026 року",
                     text: "",
-                    facebook:"https://www.facebook.com/share/p/1FtcPyWiko/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1FtcPyWiko/", text: "Деталі" }
+                    ]
                 },
                 {
                     title: "Психолого-педагогічний консиліум",
                     image: "imeg/адаптація.jpg",
-                    date: "9 січня 2026 року ",
+                    date: "9 січня 2026 року",
                     text: "",
-                    facebook:"https://www.facebook.com/share/p/16r4YnZzyp/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/16r4YnZzyp/", text: "Деталі" }
+                    ]
                 },
-                 {
+                {
                     title: "Майбутнє починається сьогодні 📚",
                     image: "imeg/джигун.jpg",
-                    date: "8 січня 2026 року ",
+                    date: "8 січня 2026 року",
                     text: "",
-                    facebook:"https://www.facebook.com/share/p/1AZ3tPL7Pd/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1AZ3tPL7Pd/", text: "Деталі" }
+                    ]
                 },
-                 {
-                    title: "Вітаємо юних знавців Землі з перемогою в обласній олімпіаді з географії !",
+                {
+                    title: "Вітаємо юних знавців Землі з перемогою в обласній олімпіаді з географії!",
                     image: "imeg/барило геог.jpg",
-                    date: "30 грудня 2025 року ",
-                    text: "Барило Валерія - I місце в обласному етапі, Синчишин Ярослав - III місце в обласному етапі.  Нехай кожна нова карта відкриває перед вами неймовірні світи, а знання географії стане вашим компасом у житті.Вчителю Оксані Юркевич - міцного здоровʼя та віри у власні сили !",
-                    facebook:"https://www.facebook.com/share/p/1Gbi6XXvrs/"
+                    date: "30 грудня 2025 року",
+                    text: "Барило Валерія - I місце в обласному етапі, Синчишин Ярослав - III місце в обласному етапі. Нехай кожна нова карта відкриває перед вами неймовірні світи, а знання географії стане вашим компасом у житті. Вчителю Оксані Юркевич - міцного здоровʼя та віри у власні сили!",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1Gbi6XXvrs/", text: "Деталі перемоги" }
+                    ]
                 },
-
-             {
+                {
                     title: "З Різдвом Христовим та Новим 2026 роком! ✨",
                     image: "imeg/різдво.jpg",
-                    date: "25 грудня 2025 року ",
-                    text: "Нехай різдвяна зірка освітлює шлях Україні, у серцях живе любов та віра, а Новий  рік принесе Мир, Перемогу та світлу надію на спільне щасливе завтра. 💙💛 З повагою шкільна родина Чемеровецького  ліцею 1.",
-                    facebook:"https://www.facebook.com/share/v/1FaD1ygyoa/"
+                    date: "25 грудня 2025 року",
+                    text: "Нехай різдвяна зірка освітлює шлях Україні, у серцях живе любов та віра, а Новий рік принесе Мир, Перемогу та світлу надію на спільне щасливе завтра. 💙💛 З повагою шкільна родина Чемеровецького ліцею 1.",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1FaD1ygyoa/", text: "Відеопривітання" }
+                    ]
                 },
                 {
                     title: "Ці миті — про щирі усмішки, сміх, танці й дитячу радість, які наповнили наші серця напередодні свят 💫",
                     image: "imeg/новий рік.jpg",
-                    date: "19 грудня 2025 року ",
+                    date: "19 грудня 2025 року",
                     text: "💙💛 Бажаємо нашим дітям веселих, безтурботних і яскравих канікул, нових вражень та відпочинку з близькими! І найголовніше — щира подяка Збройним Силам України за можливість жити, святкувати й дарувати дітям радість. Завдяки вам у нас є ці миті світла й надії❤️🙏🏻",
-                    facebook:"https://www.facebook.com/share/v/1KHBEbh7hL/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1KHBEbh7hL/", text: "Відео зі свята" }
+                    ]
                 },
                 {
                     title: "Щиро вітаємо Олену Форкун, вчителя англійської мови, з успішним проходженням сертифікації!",
                     image: "imeg/форкун.jpg",
-                    date: "12 грудня 2025 року ",
+                    date: "12 грудня 2025 року",
                     text: "Бажаємо нових професійних здобутків, постійного розвитку та вдосконалення, щоб ваша робота надихала учнів і сприяла високій якості освіти.",
-                    facebook:"https://www.facebook.com/share/p/1D8rntucNH/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1D8rntucNH/", text: "Привітання" }
+                    ]
                 },
                 {
                     title: "Свято Миколая",
                     image: "imeg/миколй.jpg",
-                    date: "5 грудня 2025 року ",
-                    text: " Нехай это світле свято принесе у кожен дім тепло, мир і затишок. Бажаємо, щоб Миколай завітав до вас із добрими подарунками, а серця наповнив вірою в диво та бажанням творити добро щодня. Нехай здійсняться найзаповітніші мрії та кожен ранок починається з усмішки! 🎁❄️",
-                    facebook:"https://www.facebook.com/share/v/1BtEBqYLq3/"
+                    date: "5 грудня 2025 року",
+                    text: "Нехай це світле свято принесе у кожен дім тепло, мир і затишок. Бажаємо, щоб Миколай завітав до вас із добрими подарунками, а серця наповнив вірою в диво та бажанням творити добро щодня. Нехай здійсняться найзаповітніші мрії та кожен ранок починається з усмішки! 🎁❄️",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1BtEBqYLq3/", text: "Відео" }
+                    ]
                 },
-
                 {
                     title: "РАЗОМ ДО ПЕРЕМОГИ!!!💙💛",
                     image: "imeg/пліч опліч.jpg",
-                    date: " 23 листопада 2025 року",
-                    text: " Завершився ІІ етап змагань з волейболу серед  юнаків 5-9 класів. Команда   Чемеровецького ліцею виборола І місце та представлятиме наш заклад на районному етапі. Вітаємо  з перемогою та бажаємо подальших успіхів!",
-                    facebook: "https://www.facebook.com/share/p/1Cy5JECxn3/"
+                    date: "23 листопада 2025 року",
+                    text: "Завершився ІІ етап змагань з волейболу серед юнаків 5-9 класів. Команда Чемеровецького ліцею виборола І місце та представлятиме наш заклад на районному етапі. Вітаємо з перемогою та бажаємо подальших успіхів!",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1Cy5JECxn3/", text: "Деталі змагань" }
+                    ]
                 },
-                
                 {
                     title: "Наша школа – кузня талантів! 💥",
                     image: "imeg/інформ.jpg",
-                    date: " 25 жовтня 2025 року",
-                    text: " Наші генії продовжують вражати! Олімпіада з інформаційних технологій принесла нам два призових місця: Ніка Голод – наша переможниця, яка підкорила вершину!Дарія  Пазинюк – із чудовим результатом та третім місцем! Але й це ще не все! Вітаємо наших блискучих переможців олімпіади з хімії: Вільчинська Ольга – перше місце!Барило Валерія – перше місце! Сенчишен Ярослав – перше місце! Мостипака Ілля – друге місце! Вау! Просто вражаючі результати! 👏 Велика подяка нашим крутим вчителям-наставникам: Оксані Музиці та Олександру Слівському – за підготовку IT-геніїв! Олені Марчук – за виховання цілої плеяди юних хіміків-переможців!",
-                    facebook: "https://www.facebook.com/share/p/1HNkYaA5G9/"
+                    date: "25 жовтня 2025 року",
+                    text: "Наші генії продовжують вражати! Олімпіада з інформаційних технологій принесла нам два призових місця: Ніка Голод – наша переможниця, яка підкорила вершину! Дарія Пазинюк – із чудовим результатом та третім місцем! Але й це ще не все! Вітаємо наших блискучих переможців олімпіади з хімії: Вільчинська Ольга – перше місце! Барило Валерія – перше місце! Сенчишен Ярослав – перше місце! Мостипака Ілля – друге місце! Вау! Просто вражаючі результати! 👏 Велика подяка нашим крутим вчителям-наставникам: Оксані Музиці та Олександру Слівському – за підготовку IT-геніїв! Олені Марчук – за виховання цілої плеяди юних хіміків-переможців!",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1HNkYaA5G9/", text: "Результати олімпіад" }
+                    ]
                 },
-                
                 {
-                    title: "Вітаємо наших талановитих учнів — переможців олімпіад з фізики та біології та їх вчителів !",
+                    title: "Вітаємо наших талановитих учнів — переможців олімпіад з фізики та біології та їх вчителів!",
                     image: "imeg/фізика.jpg",
-                    date: " 18-19 жовтня 2025 року",
-                    
-                    text: " Голод Ніка - 1 місце! Мерва Ярослав - 1 місце! Вчитель : Пасічник Володимир. Мостіпака Ілля- 2 місце! Волошина Ілона- 3 місце! Барило Валерія- 1 місце!Осідак Марія- 1 місце! Данілова Аліна- 2 місце! Вчителі : Каськів Антоніна та Лучкова Ніла. Ви вкотре довели, що наполегливість, знання й жага до пізнання приносять чудові результати. Ваші досягнення — це гордість нашого ліцею та приклад для інших учнів.",
-                    facebook: "https://www.facebook.com/share/p/16VPoYs2yG/"
+                    date: "18-19 жовтня 2025 року",
+                    text: "Голод Ніка - 1 місце! Мерва Ярослав - 1 місце! Вчитель: Пасічник Володимир. Мостіпака Ілля- 2 місце! Волошина Ілона- 3 місце! Барило Валерія- 1 місце! Осідак Марія- 1 місце! Данілова Аліна- 2 місце! Вчителі: Каськів Антоніна та Лучкова Ніла. Ви вкотре довели, що наполегливість, знання й жага до пізнання приносять чудові результати. Ваші досягнення — це гордість нашого ліцею та приклад для інших учнів.",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/16VPoYs2yG/", text: "Результати" }
+                    ]
                 },
                 {
                     title: "Благодійна ярмарка на підтримку ЗСУ відбулася!",
                     image: "imeg/ярмарок.jpg",
                     date: "21 жовтня 2025 року",
                     text: "Щира подяка всім учням, вчителям, батькам та гостям Чемеровецького ліцею №1, які долучилися до доброї справи 💛. Разом ми зібрали 150 340 грн, які буде передано нашим захисникам 💪. Дякуємо кожному, хто приготував смаколики, виготовив вироби, допомагав організувати подію чи просто прийшов підтримати! Ваша небайдужість — це ще один крок до нашої Перемоги 💙💛",
-                    facebook: "https://www.facebook.com/share/v/1BF1HdCwjf/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1BF1HdCwjf/", text: "Відео з ярмарку" }
+                    ]
                 },
-                
                 {
                     title: "#EUCodeWeek2025",
                     image: "imeg/code.jpg",
-                    date: " 16 жовтня 2025 року",
-                    text: "У рамках Європейського тижня кодування (#EUCodeWeek2025)для учнів 5–6 класів відбувся захопливий захід Code Breakers Quest: Decode the Secret!. Під час квесту школярі поринули у світ програмування та логічних задач, розгадували шифри, вирішували головоломки та виконували завдання, що розвивають алгоритмічне мислення. Атмосфера була наповнена цікавістю, командною роботою та азартом. Усі учасники продемонстрували кмітливість і завзяття, довівши, що навчання може бути не лише корисним, а й надзвичайно захоплюючим!",
-                   
-                    facebook: "https://www.facebook.com/share/p/1En6yus5QF/"
+                    date: "16 жовтня 2025 року",
+                    text: "У рамках Європейського тижня кодування (#EUCodeWeek2025) для учнів 5–6 класів відбувся захопливий захід Code Breakers Quest: Decode the Secret!. Під час квесту школярі поринули у світ програмування та логічних задач, розгадували шифри, вирішували головоломки та виконували завдання, що розвивають алгоритмічне мислення. Атмосфера була наповнена цікавістю, командною роботою та азартом. Усі учасники продемонстрували кмітливість і завзяття, довівши, що навчання може бути не лише корисним, а й надзвичайно захоплюючим!",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1En6yus5QF/", text: "Фото з заходу" }
+                    ]
                 },
                 {
                     title: "Вітаємо Переможців І-етапу Всеукраїнської олімпіади з математики 📚📐",
                     image: "imeg/матем.jpg",
-                    date: " 12 жовтня 2025 року",
-                    text: "Голод Ніку 10-А, Пекарчука Святослава 9-А, Кульпінського Назара 11-Б, Мостіпаку Іллю 8-А, nа їх вчителів, Грищишену Валентину і Радішевську Тетяну. Цінуємо! Пишаємося! Так тримати! ",
-                    facebook: "https://www.facebook.com/share/p/17GgHUajQW/"
+                    date: "12 жовтня 2025 року",
+                    text: "Голод Ніку 10-А, Пекарчука Святослава 9-А, Кульпінського Назара 11-Б, Мостіпаку Іллю 8-А, та їх вчителів, Грищишену Валентину і Радішевську Тетяну. Цінуємо! Пишаємося! Так тримати!",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/17GgHUajQW/", text: "Результати" }
+                    ]
                 },
                 {
                     title: "Вітаємо неодноразових переможців І етапу Всеукраїнської олімпіади з географії",
                     image: "imeg/геог.jpg",
-                    date: " 11 жовтня 2025 року",
-                    text: "Сенчишина Ярослава (11 клас) та Барило Валерію (10клас). Вчитель Оксана Юркевич. Бажаємо успіхів на наступному етапі олімпіади! Радіємо за вас та пишаємося , що ви є нашими учнями! ",
-                    facebook: "https://www.facebook.com/share/p/1H1YcHm7uV/"
+                    date: "11 жовтня 2025 року",
+                    text: "Сенчишина Ярослава (11 клас) та Барило Валерію (10 клас). Вчитель Оксана Юркевич. Бажаємо успіхів на наступному етапі олімпіади! Радіємо за вас та пишаємося, що ви є нашими учнями!",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1H1YcHm7uV/", text: "Деталі" }
+                    ]
                 },
                 {
-                    title: "Зі святом Вас,учителі наші!🍁",
+                    title: "Зі святом Вас, учителі наші! 🍁",
                     image: "imeg/день вчителя.jpg",
                     date: "3 жовтня 2025 року",
                     text: "",
-                    facebook: "https://www.facebook.com/share/v/1GHrEhyigt/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1GHrEhyigt/", text: "Відеопривітання" }
+                    ]
                 },
                 {
                     title: "Очі дітей говорять голосніше за слова: ми хочемо миру …🕊️",
                     image: "imeg/мир.jpg",
                     date: "21 вересня 2025",
                     text: "",
-                    facebook: "https://www.facebook.com/100069310323485/videos/1530821918348953?locale=uk_UA"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/100069310323485/videos/1530821918348953?locale=uk_UA", text: "Відео" }
+                    ]
                 },
                 {
-                    title: "Вриваємося в новий навчальний рік!🎊🎈🎉",
+                    title: "Вриваємося в новий навчальний рік! 🎊🎈🎉",
                     image: "imeg/1 вересня 2.jpg",
                     date: "1 вересня 2025",
                     text: "",
-                    facebook: "https://www.facebook.com/reel/773021572102435?locale=uk_UA"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/reel/773021572102435?locale=uk_UA", text: "Відео" }
+                    ]
                 },
                 {
-                    title: "Навчайся! Мрій! Вривайся!🎊",
+                    title: "Навчайся! Мрій! Вривайся! 🎊",
                     image: "imeg/1 вересня.jpg",
                     date: "1 вересня 2025",
                     text: "Не просто лінійка, а старт. Чемеровецький ліцей №1 дав старт новому навчальному року під потужним гаслом «Навчайся! Мрій! Вривайся!».",
-                    facebook: "https://www.facebook.com/photo?fbid=1063479652639036&set=pcb.1063480552638946&locale=uk_UA"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/photo?fbid=1063479652639036&set=pcb.1063480552638946&locale=uk_UA", text: "Фото" }
+                    ]
                 },
                 {
                     title: "Навчайся! Мрій! Вривайся!",
                     image: "imeg/огол.jpg",
                     date: "1 вересня 2025",
                     text: "",
-                    facebook: "https://www.facebook.com/photo/?fbid=1061466149507053&set=a.384971863823155&locale=uk_UA"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/photo/?fbid=1061466149507053&set=a.384971863823155&locale=uk_UA", text: "Оголошення" }
+                    ]
                 },
                 {
                     title: "Неймовірні канікули з Rest Camp 25 у Болгарії!",
                     image: "imeg/болгарія.jpg",
-                    date: "27 липня- 10 серпня 2025",
+                    date: "27 липня - 10 серпня 2025",
                     text: "З 27 липня по 10 серпня учні нашого ліцею провели незабутні канікули у мовному таборі Rest Camp 25 у Болгарії. Хвилюючі хвилі теплого Чорного моря, відпочинок у басейнах, захопливі екскурсії, вечірні розваги та цікаві інтерактивні уроки англійської мови – усе це створило неповторну атмосферу навчання та відпочинку!",
-                    YouTube: "https://youtu.be/4do3wcnlVcI?si=fJcGUHY_fC9QTQtS"
+                    links: [
+                        { type: "youtube", url: "https://youtu.be/4do3wcnlVcI?si=fJcGUHY_fC9QTQtS", text: "Відео з табору" }
+                    ]
                 },
                 {
                     title: "Випуск 2025",
                     image: "imeg/зображення_viber_2025-07-03_11-59-02-597.jpg",
                     date: "7 червня 2025",
                     text: "Світ чекає",
-                    facebook: "https://www.facebook.com/share/p/1Gy42G86tT/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/1Gy42G86tT/", text: "Фото випуску" }
+                    ]
                 },
                 {
                     title: "200 бальники",
                     image: "imeg/зображення_viber_2025-07-03_12-30-56-995.jpg",
                     date: "20 червня 2025",
-                    text: "Вітаємо наших випускників Максима Шатковського та Катерину Грехову з фантастичним досягненням — 200 балів з української мови на НМТ! Висловлюємо подяку Максиму та Катерині та вчителю Олені Чухрій. Бо за кожними 200 балами — сотні спільних кроків. Бажаємо подальших успіхів, впевненості у власних силах і нових перемог.❤️",
-                    facebook: "https://www.facebook.com/share/p/19SjcdPB7C/"
+                    text: "Вітаємо наших випускників Максима Шатковського та Катерину Грехову з фантастичним досягненням — 200 балів з української мови на НМТ! Висловлюємо подяку Максиму та Катерині та вчителю Олені Чухрій. Бо за кожними 200 балами — сотні спільних кроків. Бажаємо подальших успіхів, впевненості у власних силах і нових перемог. ❤️",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/p/19SjcdPB7C/", text: "Привітання" }
+                    ]
                 },
                 {
                     title: "Випускний вальс",
                     image: "imeg/Screenshot_2.jpg",
                     date: "7 червня 2025",
                     text: "Вальс 11 Б",
-                    facebook: "https://www.facebook.com/share/v/1YJ3yCxjwu/"
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1YJ3yCxjwu/", text: "Відео вальсу" }
+                    ]
                 },
                 {
-                    title: "Наша гордість. Юні Джурівці'",
+                    title: "Наша гордість. Юні Джурівці",
                     image: "imeg/5a27b4f23365a834159541.png",
                     date: "22 травня 2025",
-                    text: "21 травня на базі нашого ліцею відбувся перший етап дитячо-юнацької,військово-патріотичної гри «Сокіл»(«Джура»).Наша команда «Сіроманці» 🐺продемонстрували високий рівень підготовки,велику силу духу,відданість своїй справі!Пишаємось вами,наші юні патріоти!❤️❤️❤️",
-                    facebook: "https://www.facebook.com/share/v/1G5tVBx5gq/"
+                    text: "21 травня на базі нашого ліцею відбувся перший етап дитячо-юнацької, військово-патріотичної гри «Сокіл» («Джура»). Наша команда «Сіроманці» 🐺 продемонстрували високий рівень підготовки, велику силу духу, відданість своїй справі! Пишаємось вами, наші юні патріоти! ❤️❤️❤️",
+                    links: [
+                        { type: "facebook", url: "https://www.facebook.com/share/v/1G5tVBx5gq/", text: "Відео" }
+                    ]
                 }
             ];
 
             // Змінні для керування відображенням новин
             let currentIndex = 0;
-            const itemsPerLoad = 4;
+            const itemsPerLoad = 6;
+
+            // Функція для визначення класу та іконки посилання
+            function getLinkClass(type) {
+                switch(type) {
+                    case 'facebook': return 'facebook';
+                    case 'youtube': return 'youtube';
+                    case 'googledrive': return 'googledrive';
+                    default: return '';
+                }
+            }
+
+            function getLinkIcon(type) {
+                switch(type) {
+                    case 'facebook': return 'fab fa-facebook';
+                    case 'youtube': return 'fab fa-youtube';
+                    case 'googledrive': return 'fab fa-google-drive';
+                    default: return 'fas fa-link';
+                }
+            }
 
             // Функція для відображення новин
             function renderNews(startIndex, count) {
                 const newsContainer = document.getElementById('newsContainer');
                 const endIndex = Math.min(startIndex + count, newsData.length);
-                
+
                 for (let i = startIndex; i < endIndex; i++) {
                     const news = newsData[i];
                     const newsCard = document.createElement('article');
                     newsCard.className = 'news-card fade-in';
-                    
+
                     // Екрануємо спеціальні символи для безпечного використання в HTML
                     const safeTitle = news.title.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
                     const safeImage = news.image.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-                    
+
+                    // Генеруємо посилання
+                    let linksHtml = '';
+                    if (news.links && news.links.length > 0) {
+                        linksHtml = '<div class="links-container">';
+                        news.links.forEach(link => {
+                            const linkClass = getLinkClass(link.type);
+                            const linkIcon = getLinkIcon(link.type);
+                            linksHtml += `<a href="${link.url}" class="news-link ${linkClass}" target="_blank"><i class="${linkIcon}"></i> ${link.text}</a>`;
+                        });
+                        linksHtml += '</div>';
+                    }
+
                     newsCard.innerHTML = `
                         <div class="news-image-container">
                             <img src="${safeImage}" alt="${safeTitle}" class="news-image">
@@ -1084,22 +1200,21 @@
                             <h3 class="news-title">${news.title}</h3>
                             <p class="news-date">${news.date}</p>
                             <p class="news-excerpt">${news.text}</p>
-                            ${news.facebook ? `<a href="${news.facebook}" class="facebook-link" target="_blank">Переглянути у Facebook <i class="fab fa-facebook"></i></a>` : ''}
-                            ${news.YouTube ? `<a href="${news.YouTube}" class="facebook-link" target="_blank">Переглянути на YouTube <i class="fab fa-youtube"></i></a>` : ''}
+                            ${linksHtml}
                         </div>
                     `;
-                    
+
                     // Додаємо обробник кліку на зображення
                     const imgElement = newsCard.querySelector('.news-image');
                     imgElement.addEventListener('click', function() {
                         openModal(news.image, news.title);
                     });
-                    
+
                     newsContainer.appendChild(newsCard);
                 }
-                
+
                 currentIndex = endIndex;
-                
+
                 // Оновлюємо стан кнопки
                 updateLoadMoreButton();
             }
@@ -1108,21 +1223,23 @@
             function updateLoadMoreButton() {
                 const loadMoreContainer = document.getElementById('loadMoreContainer');
                 loadMoreContainer.innerHTML = '';
-                
+
                 if (currentIndex < newsData.length) {
                     const loadMoreBtn = document.createElement('button');
                     loadMoreBtn.className = 'load-more-btn';
                     loadMoreBtn.innerHTML = `Читати далі (${newsData.length - currentIndex} новин) <i class="fas fa-arrow-down"></i>`;
-                    
+
                     loadMoreBtn.addEventListener('click', function() {
                         renderNews(currentIndex, itemsPerLoad);
                         // Плавна прокрутка до нових новин
-                        const lastCard = document.querySelector('.news-card:last-child');
-                        if (lastCard) {
-                            lastCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
+                        setTimeout(() => {
+                            const lastCard = document.querySelector('.news-card:last-child');
+                            if (lastCard) {
+                                lastCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        }, 100);
                     });
-                    
+
                     loadMoreContainer.appendChild(loadMoreBtn);
                 } else {
                     // Всі новини завантажено
@@ -1135,7 +1252,7 @@
                 }
             }
 
-            // Ініціалізація сторінки - показуємо перші 4 новини
+            // Ініціалізація сторінки - показуємо перші новини
             renderNews(0, itemsPerLoad);
         });
 
@@ -1170,10 +1287,5 @@
         });
     </script>
 </body>
+
 </html>
-
-
-
-
-
-
