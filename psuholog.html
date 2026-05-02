@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -304,6 +305,146 @@
             font-size: 18px;
         }
         
+        /* Стилі для гнучкого блоку (універсальний контентний блок) */
+        .flexible-content-block {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            margin-bottom: 32px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        
+        .flexible-block-header {
+            background: linear-gradient(95deg, #f0f7ff 0%, #ffffff 100%);
+            padding: 20px 28px;
+            border-bottom: 2px solid #e0ecfe;
+        }
+        
+        .flexible-block-header h3 {
+            color: #0d47a1;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .flexible-block-header h3 i {
+            font-size: 1.8rem;
+            color: #1e88e5;
+        }
+        
+        .flexible-block-body {
+            padding: 24px 28px;
+        }
+        
+        .flexible-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+            margin-bottom: 24px;
+        }
+        
+        .flexible-doc-link {
+            background: #f8fafd;
+            padding: 16px 20px;
+            border-radius: 14px;
+            margin: 20px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #0d47a1;
+            transition: 0.2s;
+            border: 1px solid #cfddee;
+        }
+        
+        .flexible-doc-link:hover {
+            background: #eef4fc;
+            transform: translateX(5px);
+        }
+        
+        .flexible-doc-link i {
+            font-size: 28px;
+        }
+        
+        .flexible-social-section {
+            margin-top: 20px;
+            background: #f9fbfe;
+            border-radius: 14px;
+            padding: 8px 0;
+        }
+        
+        .flexible-social-title {
+            font-weight: 700;
+            color: #165a9c;
+            margin: 16px 0 12px 0;
+            font-size: 1.1rem;
+            padding-left: 8px;
+            border-left: 4px solid #1e88e5;
+        }
+        
+        .social-links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 8px;
+        }
+        
+        .social-links-grid li {
+            flex: 1 1 240px;
+        }
+        
+        .social-post-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 10px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #1f2a44;
+            font-weight: 500;
+            transition: 0.2s;
+            border: 1px solid #e2edff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        
+        .social-post-link:hover {
+            background: #eef2fc;
+            border-color: #1e88e5;
+            transform: translateY(-2px);
+        }
+        
+        .social-post-link i {
+            font-size: 22px;
+            width: 28px;
+            text-align: center;
+        }
+        
+        .fa-facebook-f { color: #1877F2; }
+        .fa-instagram { color: #E4405F; }
+        .fa-youtube { color: #FF0000; }
+        .fa-telegram { color: #26A5E4; }
+        .fa-twitter { color: #1DA1F2; }
+        .fa-linkedin { color: #0077b5; }
+        
+        .admin-note {
+            background: #e8f0fe;
+            padding: 12px 20px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            color: #004070;
+            text-align: center;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
         /* Футер */
         footer {
             background: linear-gradient(135deg, #1e88e5, #0d47a1);
@@ -360,18 +501,22 @@
                 max-width: 100%;
             }
             
-            .fb-post-image {
-                height: 200px;
+            .flexible-block-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .flexible-block-body {
+                padding: 18px;
+            }
+            
+            .social-links-grid li {
+                flex: 1 1 100%;
             }
         }
         
         @media (max-width: 480px) {
             .fb-post-image {
                 height: 180px;
-            }
-            
-            .fb-post-text {
-                max-height: 120px;
             }
         }
     </style>
@@ -406,8 +551,7 @@
                     <li><a href="index.html"><i class="fas fa-home"></i> Головна</a></li>
                     <li><a href="pro lichey.html"><i class="fas fa-school"></i> Про ліцей</a></li>
                     <li><a href="navchalno robota.html"><i class="fas fa-book"></i> Навчально-методична робота</a></li>
-                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a>
-                    </li>
+                    <li><a href="ymovu dostup.html"><i class="fas fa-wheelchair"></i> Доступність для осіб з ООП</a></li>
                     <li><a href="prozorist.html"><i class="fas fa-info-circle"></i> Прозорість та відкритість</a></li>
                     <li><a href="vuhovna.html"><i class="fas fa-heart"></i> Виховна робота</a></li>
                     <li><a href="psuholog.html" class="active"><i class="fas fa-brain"></i> Сторінка психолога</a></li>
@@ -421,35 +565,69 @@
             <main class="psychologist-content">
                 <h2 class="section-title">Сторінка психолога</h2>
                 
-                <!-- Вступний текст -->
+                <!-- Існуючий контент (не змінено) -->
                 <div class="text-content">
                     <p>Ласкаво просимо на сторінку шкільного психолога! Тут ви знайдете корисні матеріали, поради та рекомендації для учнів, батьків і педагогів.</p>
                     <p>Якщо у вас виникли питання або потрібна консультація, звертайтеся за графіком роботи.</p>
                 </div>
+                <!-- ============= НОВИЙ ДИНАМІЧНИЙ БЛОК (гнучкий контент) ============= -->
+                <!-- Цей блок можна дублювати, копіювати, вставляти і редагувати для створення різноманітних матеріалів: заголовок+текст+документ+посилання на соцмережі -->
+                
+                <div class="flexible-content-block" id="dynamicBlockExample">
+                    <div class="flexible-block-header">
+                        <h3><i class="fas fa-hand-holding-heart"></i> <span id="blockTitle">Тиждень психології «Твори світ навколо себе»</span></h3>
+                    </div>
+                    <div class="flexible-block-body">
+                        <!-- 2. Просто текст -->
+                        <div class="flexible-text" id="blockText">
+                            <p>Тиждень психології «Твори світ навколо себе» у ліцеї став простором підтримки, розвитку та позитивних емоцій. Учасники освітнього процесу долучилися до різноманітних активностей, спрямованих на збереження психологічного здоров’я та налагодження взаєморозуміння. Відеофрагменти заходів доступні за посиланням.</p>
+                        </div>
+                        
+                        <!-- 3. Посилання на документ -->
+                         <p>План заходів.</p>
+                        <div id="blockDocumentLink">
+                            <a href="https://docs.google.com/document/d/1sd4e9vONe40QAN_sBJ5rK8tg9Jx_rU8R/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank" class="flexible-doc-link">
+                                <i class="fas fa-file-alt"></i> План заходів (PDF)
+                            </a>
+                        </div>
+                        
+                        <!-- 4. Багато посилань на пости в соцмережах -->
+                        <div class="flexible-social-section" id="blockSocialLinks">
+                            <div class="flexible-social-title"><i class="fas fa-share-alt"></i> Корисні дописи у соціальних мережах:</div>
+                            <ul class="social-links-grid">
+                                <li><a href="https://www.facebook.com/share/v/1Ayc139M26/" target="_blank" class="social-post-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                                 <li><a href="https://www.facebook.com/share/r/1Hzf9U8M6w/" target="_blank" class="social-post-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                                  <li><a href="https://www.facebook.com/share/v/18fboL6Zas/" target="_blank" class="social-post-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                                  <li><a href="https://www.facebook.com/share/v/1CVcCZXRg7/" target="_blank" class="social-post-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                                   <li><a href="https://www.facebook.com/share/v/1B3BS3WWga/" target="_blank" class="social-post-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                                
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="text-content">
                     <p>2 квітня — Всесвітній день поширення інформації про аутизм</p>
                     <p>Щороку 2 квітня у світі відзначають Всесвітній день поширення інформації про аутизм. Його мета — підвищення обізнаності суспільства про розлади аутистичного спектра, формування толерантного ставлення та підтримки людей з аутизмом і їхніх родин.
 Аутизм — це не хвороба, а особливість розвитку, яка впливає на спілкування, соціальну взаємодію та сприйняття навколишнього світу. Кожна дитина з аутизмом є унікальною, має свої сильні сторони, здібності та потребує розуміння, прийняття й підтримки.
 Створення інклюзивного освітнього середовища — важливе завдання сучасної школи. Доброзичливість, терпіння, повага до індивідуальних особливостей і готовність допомогти сприяють комфортному навчанню та розвитку всіх дітей без винятку.
 У цей день ми нагадуємо про важливість відкритості, емпатії та взаємопідтримки. Разом ми можемо формувати суспільство, у якому кожна дитина відчуває себе прийнятою, цінною та зрозумілою.</p>
-               <div class="gallery">
-                    <a href="imeg/психолог 2 квв.jpg" data-lightbox="psychologist" data-title="Всесвітній день поширення інформації про аутизм">
-                        <img src="imeg/психолог 2 квв.jpg" alt="Всесвітній день поширення інформації про аутизм">
-                    </a>
-                    
-                    
-                </div>
+                    <div class="gallery">
+                        <a href="imeg/психолог 2 квв.jpg" data-lightbox="psychologist" data-title="Всесвітній день поширення інформації про аутизм">
+                            <img src="imeg/психолог 2 квв.jpg" alt="Всесвітній день поширення інформації про аутизм">
+                        </a>
+                    </div>
                 </div>
                 
                 <!-- Галерея фото -->
-               <div class="gallery">
+                <div class="gallery">
                     <a href="imeg/психолог 2.jpg" data-lightbox="psychologist" data-title="Як запобігти булінгу">
                         <img src="imeg/психолог 2.jpg" alt="Як запобігти булінгу">
                     </a>
                     <a href="imeg/психолог 1.jpg" data-lightbox="psychologist" data-title="Як запобігти булінгу">
                         <img src="imeg/психолог 1.jpg" alt="Як запобігти булінгу">
                     </a>
-                    
                 </div>
                 
                 <!-- Відео з Facebook -->
@@ -459,54 +637,14 @@
                 
                 <!-- Документи -->
                 <ul class="documents">
-                    <li>
-                        <a href="docs/schedule.pdf" download>
-                            <i class="fas fa-file-pdf"></i>
-                            <span>Графік роботи психолога (PDF, 0.5MB)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://docs.google.com/document/d/1S8FdAz8lmMDHG4kCiw1_w3AB2gpDmlUW/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>Заходи щодо запобігання та протидії вербування і тероризму у Чемеровецькому ліцеї №1</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="https://docs.google.com/document/d/1laXj7BvfbufJetONFngYCqwSxZVtUs8u/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>Дослідження проблеми булінгу в Чемеровецькому ліцеї №1</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="https://docs.google.com/document/d/1u5-zN6EuCcFLq8rwlpyD9O-0kn4vL2fy/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>План проведення тижня психології «Подорож стежками Психології» в Чемеровецькому ліцеї №1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://docs.google.com/document/d/1MtcyY7D3F44XgiO5hJv9rPirbF4DkD3_/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>Коли та чому варто звертатися до шкільного психолога</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="https://docs.google.com/document/d/1alS94dIIQFketHHgaR1r_5_WPOybKZyn/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>Школа для всіх: як навчитися бачити можливості, а не обмеження</span>
-                         </a>
-                    </li>
-                     <li>
-                        <a href="https://docs.google.com/document/d/1G8NmuMhts4Hq6_rN7Gx7ZflvU1qmNWNs/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>Порядок реагування на випадки булінгу(цькування)</span>
-                         </a>
-                    </li>
-                     <li>
-                        <a href="https://docs.google.com/document/d/1_JVPueQYM9ynRotuOHfBOVbxrmKhbXi3/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank">
-                            <i class="fas fa-file-word"></i>
-                            <span>Корисні посилання щодо допомоги та підтримки в ситуаціях булінгу, насильства, торгівлі людьми або складних життєвих обставин</span>
-                         </a>
-                    </li>
+                    <li><a href="docs/schedule.pdf" download><i class="fas fa-file-pdf"></i><span>Графік роботи психолога (PDF, 0.5MB)</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1S8FdAz8lmMDHG4kCiw1_w3AB2gpDmlUW/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>Заходи щодо запобігання та протидії вербування і тероризму у Чемеровецькому ліцеї №1</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1laXj7BvfbufJetONFngYCqwSxZVtUs8u/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>Дослідження проблеми булінгу в Чемеровецькому ліцеї №1</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1u5-zN6EuCcFLq8rwlpyD9O-0kn4vL2fy/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>План проведення тижня психології «Подорож стежками Психології» в Чемеровецькому ліцеї №1</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1MtcyY7D3F44XgiO5hJv9rPirbF4DkD3_/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>Коли та чому варто звертатися до шкільного психолога</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1alS94dIIQFketHHgaR1r_5_WPOybKZyn/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>Школа для всіх: як навчитися бачити можливості, а не обмеження</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1G8NmuMhts4Hq6_rN7Gx7ZflvU1qmNWNs/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>Порядок реагування на випадки булінгу(цькування)</span></a></li>
+                    <li><a href="https://docs.google.com/document/d/1_JVPueQYM9ynRotuOHfBOVbxrmKhbXi3/edit?usp=sharing&ouid=101248689302485956801&rtpof=true&sd=true" target="_blank"><i class="fas fa-file-word"></i><span>Корисні посилання щодо допомоги та підтримки в ситуаціях булінгу, насильства, торгівлі людьми або складних життєвих обставин</span></a></li>
                 </ul>
                 
                 <!-- Додатковий текст -->
@@ -522,30 +660,8 @@
                     </ul>
                 </div>
                 
-                <!-- Картки Facebook постів -->
-                <div class="facebook-posts">
-                   
-                    
-                    <!-- Приклад картки Facebook посту -->
-                    <a href="https://www.facebook.com/share/v/1Znypryn3e/" target="_blank" class="facebook-card">
-                        <img src="imeg/рівні.jpg" alt="Психологічна підтримка" class="fb-post-image">
-                        <div class="fb-post-content">
-                            <h4 class="fb-post-title">Тиждень толерантності</h4>
-                            <p class="fb-post-text">Упродовж цього тижня наш ліцей жив у атмосфері поваги, доброти та відкритості. Ми разом нагадали собі, що толерантність — це не просто слово, а щоденна практика, яка формує безпечний і дружній простір для кожного.🤍🧡❤️💚💙</p>
-                            <div class="fb-post-meta">
-                                <span>Опубліковано: 21.11.2025</span>
-                                <i class="fab fa-facebook fb-icon"></i>
-                            </div>
-                        </div>
-                    </a>
-                    
-                   
-                    
-                    
-                </div>
-            </main>
-        </div>
-    </div>
+                
+           
     
     <!-- Футер -->
     <footer>
@@ -563,31 +679,22 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script>
-        // Встановлення поточного року у футері
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Ініціалізація Lightbox
         lightbox.option({
             'resizeDuration': 200,
             'wrapAround': true,
             'albumLabel': 'Зображення %1 з %2'
         });
-
-        // Встановлення активної сторінки в меню
         document.addEventListener('DOMContentLoaded', function() {
             const currentPage = window.location.pathname.split('/').pop();
-            const menuItems = document.querySelectorAll('.nav-menu a');
-            
-            menuItems.forEach(item => {
-                if (item.getAttribute('href') === currentPage) {
-                    item.classList.add('active');
-                }
+            document.querySelectorAll('.nav-menu a').forEach(item => {
+                if (item.getAttribute('href') === currentPage) item.classList.add('active');
             });
         });
     </script>
 </body>
 </html>
+```
